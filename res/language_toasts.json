@@ -1,0 +1,258 @@
+[
+	{
+        "id": 1,
+		"language": "Afrikaans",
+		"toast": "Gesondheid",
+		"pronunciation": "Ge-sund-hate",
+		"translation": "Health",
+		"note": ""
+	},
+	{
+        "id": 2,
+		"language": "Chinese (Mandarin)",
+		"toast": "干杯 / gān bēi",
+		"pronunciation": "Gan bay",
+		"translation": "Cheers",
+		"note": ""
+	},
+	{
+        "id": 3,
+		"language": "Czech",
+		"toast": "Na zdravi",
+		"pronunciation": "Naz-drah vi",
+		"translation": "Cheers",
+		"note": ""
+	},
+	{
+        "id": 4,
+		"language": "Dutch",
+		"toast": "Proost",
+		"pronunciation": "Prohst",
+		"translation": "Cheers",
+		"note": ""
+	},
+	{
+        "id": 5,
+		"language": "French",
+		"toast": "Santé!",
+		"pronunciation": "Sahn-tay",
+		"translation": "To your health",
+		"note": ""
+	},
+	{
+        "id": 6,
+		"language": "French",
+		"toast": "À votre santé!",
+		"pronunciation": "Ah la vo-tre sahn-tay",
+		"translation": "To your health",
+		"note": ""
+	},
+	{
+        "id": 7,
+		"language": "German",
+		"toast": "Prost",
+		"pronunciation": "Prohst",
+		"translation": "Cheers",
+		"note": ""
+	},
+	{
+        "id": 8,
+		"language": "German",
+		"toast": "Zum wohl",
+		"pronunciation": "Tsum vohl",
+		"translation": "To your health",
+		"note": ""
+	},
+	{
+        "id": 9,
+		"language": "Greek",
+		"toast": "ΥΓΕΙΑ",
+		"pronunciation": "Yamas",
+		"translation": "Health",
+		"note": ""
+	},
+	{
+        "id": 10,
+		"language": "Irish Gaelic",
+		"toast": "Sláinte",
+		"pronunciation": "Slawn-cha",
+		"translation": "Health",
+		"note": ""
+	},
+	{
+        "id": 11,
+		"language": "Italian",
+		"toast": "Salute",
+		"pronunciation": "Saw-lutay",
+		"translation": "Health",
+		"note": ""
+	},
+	{
+        "id": 12,
+		"language": "Italian",
+		"toast": "Cin cin",
+		"pronunciation": "Chin chin",
+		"translation": "Cheers",
+		"note": ""
+	},
+	{
+        "id": 13,
+		"language": "Japanese",
+		"toast": "乾杯/ Kanpai",
+		"pronunciation": "Kan-pie",
+		"translation": "Cheers / Empty the glass",
+		"note": ""
+	},
+	{
+        "id": 14,
+		"language": "Korean",
+		"toast": "건배",
+		"pronunciation": "Gun bae",
+		"translation": "Cheers / Toast",
+		"note": ""
+	},
+	{
+        "id": 15,
+		"language": "Lithuanian",
+		"toast": "į sveikatą",
+		"pronunciation": "Ee sweh-kata",
+		"translation": "To your health",
+		"note": ""
+	},
+	{
+        "id": 16,
+		"language": "Moldovan",
+		"toast": "Noroc",
+		"pronunciation": "No-rock",
+		"translation": "Luck",
+		"note": ""
+	},
+	{
+        "id": 17,
+		"language": "Polish",
+		"toast": "Na zdrowie",
+		"pronunciation": "Naz-droh-vee-ay",
+		"translation": "To your health",
+		"note": ""
+	},
+	{
+        "id": 18,
+		"language": "Portugese",
+		"toast": "Saúde",
+		"pronunciation": "Saw-OO-de",
+		"translation": "Health",
+		"note": ""
+	},
+	{
+        "id": 19,
+		"language": "Russian",
+		"toast": "Будем здоровы",
+		"pronunciation": "Budem zdorovi",
+		"translation": "To your health",
+		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
+	},
+	{
+        "id": 20,
+		"language": "Russian",
+		"toast": "На здоровье",
+		"pronunciation": "Na zdorovie",
+		"translation": "To your health",
+		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
+	},
+	{
+        "id": 21,
+		"language": "Spanish",
+		"toast": "Salud",
+		"pronunciation": "Sah-lud",
+		"translation": "Health",
+		"note": ""
+	},
+	{
+        "id": 22,
+		"language": "Swedish",
+		"toast": "Skål",
+		"pronunciation": "Skawl",
+		"translation": "Cheers",
+		"note": "Don’t forget to look everyone in the eye!"
+	},
+	{
+        "id": 23,
+		"language": "Welsh",
+		"toast": "Iechyd da",
+		"pronunciation": "Yeh-chid dah",
+		"translation": "Good health",
+		"note": ""
+	},
+	{
+        "id": 24,
+		"language": "Yiddish",
+		"toast": "Sei gesund",
+		"pronunciation": "Say geh-sund",
+		"translation": "Be healthy",
+		"note": ""
+	},
+	{
+        "id": 25,
+		"language": "Albanian",
+		"toast": "Gëzuar",
+		"pronunciation": "Geh-zoo-ah",
+		"translation": "Cheers",
+		"note": ""
+	},
+	{
+        "id": 26,
+		"language": "Arabic",
+		"toast": "فى صحتك",
+		"pronunciation": "Fe sahetek",
+		"translation": "Good luck",
+		"note": ""
+	},
+	{
+        "id": 27,
+		"language": "Azerbaijani",
+		"toast": "Nuş olsun",
+		"pronunciation": "Nush ohlsun",
+		"translation": "Bon appetit",
+		"note": ""
+	},
+	{
+        "id": 28,
+		"language": "Croatian",
+		"toast": "Živjeli",
+		"pronunciation": "Zhee-vi-lee",
+		"translation": "Cheers",
+		"note": ""
+	},
+	{
+        "id": 29,
+		"language": "Bulgarian",
+		"toast": "Наздраве",
+		"pronunciation": "Naz-dra-vey",
+		"translation": "Cheers",
+		"note": ""
+	},
+	{
+        "id": 30,
+		"language": "Catalan",
+		"toast": "Salut",
+		"pronunciation": "Sah-lut",
+		"translation": "Health",
+		"note": ""
+	},
+	{
+        "id": 31,
+		"language": "Catalan",
+		"toast": "Salut",
+		"pronunciation": "Sah-lut",
+		"translation": "Health",
+		"note": ""
+	},
+	{
+        "id": 32,
+		"language": "Estonian",
+		"toast": "Terviseks",
+		"pronunciation": "Ter-vih-sex",
+		"translation": "For health",
+		"note": ""
+	}
+]

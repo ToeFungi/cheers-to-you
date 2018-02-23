@@ -1,0 +1,78 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-toast">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+      .toast {
+        margin-bottom: 0.2em;
+      }
+
+      .pronunciation {
+        margin-top: 0;
+        font-style: italic;
+      }
+    </style>
+
+    <div class="card">
+      <h1>[[selectedToast.language]]</h1>
+      <p class="toast">[[selectedToast.toast]]</p>
+      <p class="pronunciation">- [[selectedToast.pronunciation]]</p>
+      <p class="translation">"[[selectedToast.translation]]"</p>
+      <p class="note">[[selectedToast.note]]</p>
+    </div>
+
+    <paper-button raised on-click="_populateWindow">Another Round!</paper-button>
+  </template>
+
+  <script>
+    class MyToast extends Polymer.Element {
+      static get is() { return 'my-toast'; }
+
+      static get properties() {
+      	return {
+      		active: {
+      			type: Boolean,
+            observer: '_getToasts'
+					},
+      		toasts: Array,
+          selectedToast: Object
+				}
+      }
+
+			_getToasts(active) {
+				if (!active) return;
+
+        new Promise((resolve, reject) => {
+          let xhr = new XMLHttpRequest;
+          xhr.onload = () => resolve(new Response(xhr.responseText, {status: xhr.status}));
+          xhr.onerror = () => reject(new TypeError('Local request failed'));
+          xhr.open('GET', 'res/language_toasts.json');
+          xhr.send(null);
+        })
+        .then((resp) => resp.json())
+        .then((data) => this.toasts = data)
+        .then(() => this._populateWindow());
+			}
+
+			_populateWindow() {
+      	this.selectedToast = this.toasts[this._getRandomToast()];
+      }
+
+      _getRandomToast() {
+			  return Math.floor(Math.random() * Math.floor(this.toasts.length));
+      }
+    }
+
+    window.customElements.define(MyToast.is, MyToast);
+  </script>
+</dom-module>
