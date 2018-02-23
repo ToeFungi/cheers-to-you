@@ -10,7 +10,6 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="my-toast.html">
 
@@ -80,7 +79,7 @@
       <app-drawer id="drawer" slot="drawer">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="toast" href="[[rootPath]]toast">View One</a>
+          <!--<a name="toast" href="[[rootPath]]toast">View One</a>-->
         </iron-selector>
       </app-drawer>
 
@@ -90,7 +89,7 @@
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <!--<paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>-->
-            <div main-title>Toaster!</div>
+            <div main-title>Let's Toast!</div>
             <iron-icon class="logo" src="images/icon.png"></iron-icon>
           </app-toolbar>
         </app-header>
