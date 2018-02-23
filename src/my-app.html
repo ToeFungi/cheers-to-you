@@ -100,7 +100,7 @@
             selected-attribute="active"
             fallback-selection="view404"
             role="main">
-          <my-toast name="toast"></my-toast>
+          <my-toast name="toast" version="[[version]]"></my-toast>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -121,7 +121,11 @@
           },
           routeData: Object,
           subroute: Object,
-          rootPath: String
+          rootPath: String,
+          version: {
+          	type: String,
+            value: '0.1.0'
+          }
         };
       }
 

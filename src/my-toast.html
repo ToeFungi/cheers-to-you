@@ -21,6 +21,10 @@
         margin-top: 0;
         font-style: italic;
       }
+
+      .version {
+        text-align: center;
+      }
     </style>
 
     <div class="card">
@@ -32,6 +36,8 @@
     </div>
 
     <paper-button raised on-click="_populateWindow">Another Round!</paper-button>
+
+    <p class="version">Version: [[version]]</p>
   </template>
 
   <script>
@@ -45,7 +51,8 @@
             observer: '_getToasts'
 					},
       		toasts: Array,
-          selectedToast: Object
+          selectedToast: Object,
+          version: String
 				}
       }
 
