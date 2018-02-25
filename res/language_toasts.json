@@ -75,7 +75,7 @@
         "id": 10,
 		"language": "Irish Gaelic",
 		"toast": "Sláinte",
-		"pronunciation": "Slawn-cha",
+		"pronunciation": "S-lawn-cha",
 		"translation": "Health",
 		"note": ""
 	},
@@ -98,17 +98,17 @@
 	{
         "id": 13,
 		"language": "Japanese",
-		"toast": "乾杯/ Kanpai",
-		"pronunciation": "Kan-pie",
-		"translation": "Cheers / Empty the glass",
-		"note": ""
+		"toast": "乾杯 / Kampai",
+		"pronunciation": "Kam-pie",
+		"translation": "Empty your glass",
+		"note": "The word Kenpai is used during funerals and memorial services to toast for the deceased with respect. If you ever attend a Japanese funeral service, just raise the glass and say Kenpai without clinking glasses."
 	},
 	{
         "id": 14,
 		"language": "Korean",
 		"toast": "건배",
 		"pronunciation": "Gun bae",
-		"translation": "Cheers / Toast",
+		"translation": "Bottoms up",
 		"note": ""
 	},
 	{
@@ -148,7 +148,7 @@
 		"language": "Russian",
 		"toast": "Будем здоровы",
 		"pronunciation": "Budem zdorovi",
-		"translation": "To your health",
+		"translation": "We will be healthy",
 		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
 	},
 	{
@@ -156,7 +156,7 @@
 		"language": "Russian",
 		"toast": "На здоровье",
 		"pronunciation": "Na zdorovie",
-		"translation": "To your health",
+		"translation": "To health",
 		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
 	},
 	{
