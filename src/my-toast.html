@@ -41,46 +41,46 @@
   </template>
 
   <script>
-    class MyToast extends Polymer.Element {
-      static get is() { return 'my-toast'; }
+      class MyToast extends Polymer.Element {
+          static get is() { return 'my-toast'; }
 
-      static get properties() {
-      	return {
-      		active: {
-      			type: Boolean,
-            observer: '_getToasts'
-					},
-      		toasts: Array,
-          selectedToast: Object,
-          version: String
-				}
+          static get properties() {
+              return {
+                  active: {
+                      type: Boolean,
+                      observer: '_getToasts'
+                  },
+                  toasts: Array,
+                  selectedToast: Object,
+                  version: String
+              }
+          }
+
+          _getToasts(active) {
+              if (!active) return;
+
+              new Promise((resolve, reject) => {
+                  let xhr = new XMLHttpRequest;
+                  xhr.onload = () => resolve(new Response(xhr.responseText, {status: xhr.status}));
+                  xhr.onerror = () => reject(new TypeError('Local request failed'));
+                  xhr.open('GET', 'res/language_toasts.json');
+                  xhr.send(null);
+              })
+                  .then((resp) => resp.json())
+                  .then((data) => this.toasts = data)
+                  .then(() => this._populateWindow())
+                  .catch(() => alert('Something went wrong.'));
+          }
+
+          _populateWindow() {
+              this.selectedToast = this.toasts[this._getRandomToast()];
+          }
+
+          _getRandomToast() {
+              return Math.floor(Math.random() * Math.floor(this.toasts.length));
+          }
       }
 
-			_getToasts(active) {
-				if (!active) return;
-
-        new Promise((resolve, reject) => {
-          let xhr = new XMLHttpRequest;
-          xhr.onload = () => resolve(new Response(xhr.responseText, {status: xhr.status}));
-          xhr.onerror = () => reject(new TypeError('Local request failed'));
-          xhr.open('GET', 'res/language_toasts.json');
-          xhr.send(null);
-        })
-        .then((resp) => resp.json())
-        .then((data) => this.toasts = data)
-        .then(() => this._populateWindow())
-        .catch(() => alert('Something went wrong.'));
-			}
-
-			_populateWindow() {
-      	this.selectedToast = this.toasts[this._getRandomToast()];
-      }
-
-      _getRandomToast() {
-			  return Math.floor(Math.random() * Math.floor(this.toasts.length));
-      }
-    }
-
-    window.customElements.define(MyToast.is, MyToast);
+      window.customElements.define(MyToast.is, MyToast);
   </script>
 </dom-module>

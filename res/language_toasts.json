@@ -20,8 +20,8 @@
 		"language": "Czech",
 		"toast": "Na zdravi",
 		"pronunciation": "Naz-drah vi",
-		"translation": "Cheers",
-		"note": ""
+		"translation": "To health",
+		"note": "Can also mean 'bless you', after sneezing!"
 	},
 	{
         "id": 4,
@@ -34,9 +34,9 @@
 	{
         "id": 5,
 		"language": "French",
-		"toast": "Santé!",
+		"toast": "Santé",
 		"pronunciation": "Sahn-tay",
-		"translation": "To your health",
+		"translation": "Cheers",
 		"note": ""
 	},
 	{
@@ -53,7 +53,7 @@
 		"toast": "Prost",
 		"pronunciation": "Prohst",
 		"translation": "Cheers",
-		"note": ""
+		"note": "A very informal way of saying 'bless you' after someone sneezes. Be careful though as some might find this offensive!"
 	},
 	{
         "id": 8,
@@ -61,12 +61,12 @@
 		"toast": "Zum wohl",
 		"pronunciation": "Tsum vohl",
 		"translation": "To your health",
-		"note": ""
+		"note": "This is a more formal toast. Use this at your next business lunch!"
 	},
 	{
         "id": 9,
 		"language": "Greek",
-		"toast": "ΥΓΕΙΑ",
+		"toast": "υγεία",
 		"pronunciation": "Yamas",
 		"translation": "Health",
 		"note": ""
@@ -137,7 +137,7 @@
 	},
 	{
         "id": 18,
-		"language": "Portugese",
+		"language": "Portuguese",
 		"toast": "Saúde",
 		"pronunciation": "Saw-OO-de",
 		"translation": "Health",
@@ -212,7 +212,7 @@
 		"language": "Azerbaijani",
 		"toast": "Nuş olsun",
 		"pronunciation": "Nush ohlsun",
-		"translation": "Bon appetit",
+		"translation": "Have a nice meal",
 		"note": ""
 	},
 	{
@@ -221,7 +221,7 @@
 		"toast": "Živjeli",
 		"pronunciation": "Zhee-vi-lee",
 		"translation": "Cheers",
-		"note": ""
+		"note": "The grammatically correct forms are, to a single man 'živio', to a single woman 'živjela', to a group of men 'živjeli', to a group of women 'živjele'"
 	},
 	{
         "id": 29,
@@ -240,19 +240,19 @@
 		"note": ""
 	},
 	{
-        "id": 31,
-		"language": "Catalan",
-		"toast": "Salut",
-		"pronunciation": "Sah-lut",
-		"translation": "Health",
-		"note": ""
-	},
-	{
-        "id": 32,
+		"id": 31,
 		"language": "Estonian",
 		"toast": "Terviseks",
 		"pronunciation": "Ter-vih-sex",
 		"translation": "For health",
+		"note": ""
+	},
+	{
+		"id": 32,
+		"language": "Thai",
+		"toast": "Chok dee",
+		"pronunciation": "Chok dee",
+		"translation": "Good luck",
 		"note": ""
 	}
 ]
