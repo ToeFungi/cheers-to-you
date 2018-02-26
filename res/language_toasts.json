@@ -5,13 +5,13 @@
 		"toast": "Gesondheid",
 		"pronunciation": "Ge-sund-hate",
 		"translation": "Health",
-		"locale": "en-gb",
+		"locale": "af-af",
 		"note": ""
 	},
 	{
         "id": 2,
 		"language": "Chinese (Mandarin)",
-		"toast": "干杯 / gān bēi",
+		"toast": "干杯",
 		"pronunciation": "Gan bay",
 		"translation": "Cheers",
 		"locale": "zh-cn",
@@ -23,7 +23,7 @@
 		"toast": "Na zdravi",
 		"pronunciation": "Naz-drah vi",
 		"translation": "To health",
-		"locale": "en-gb",
+		"locale": "cs-cs",
 		"note": "Can also mean 'bless you', after sneezing!"
 	},
 	{
@@ -77,7 +77,7 @@
 		"toast": "υγεία",
 		"pronunciation": "Yamas",
 		"translation": "Health",
-		"locale": "en-gb",
+		"locale": "el-el",
 		"note": ""
 	},
 	{
@@ -110,10 +110,10 @@
 	{
         "id": 13,
 		"language": "Japanese",
-		"toast": "乾杯 / Kampai",
+		"toast": "乾杯",
 		"pronunciation": "Kam-pie",
 		"translation": "Empty your glass",
-		"locale": "en-gb",
+		"locale": "ja-ja",
 		"note": "The word Kenpai is used during funerals and memorial services to toast for the deceased with respect. If you ever attend a Japanese funeral service, just raise the glass and say Kenpai without clinking glasses."
 	},
 	{
@@ -122,7 +122,7 @@
 		"toast": "건배",
 		"pronunciation": "Gun bae",
 		"translation": "Bottoms up",
-		"locale": "en-gb",
+		"locale": "ko-ko",
 		"note": ""
 	},
 	{
@@ -131,7 +131,7 @@
 		"toast": "į sveikatą",
 		"pronunciation": "Ee sweh-kata",
 		"translation": "To your health",
-		"locale": "en-gb",
+		"locale": "lt-lt",
 		"note": ""
 	},
 	{
@@ -149,7 +149,7 @@
 		"toast": "Na zdrowie",
 		"pronunciation": "Naz-droh-vee-ay",
 		"translation": "To your health",
-		"locale": "en-gb",
+		"locale": "pl-pl",
 		"note": ""
 	},
 	{
@@ -167,7 +167,7 @@
 		"toast": "Будем здоровы",
 		"pronunciation": "Budem zdorovi",
 		"translation": "We will be healthy",
-		"locale": "ru-mo",
+		"locale": "ru-ru",
 		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
 	},
 	{
@@ -176,7 +176,7 @@
 		"toast": "На здоровье",
 		"pronunciation": "Na zdorovie",
 		"translation": "To health",
-		"locale": "ru-mo",
+		"locale": "ru-ru",
 		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
 	},
 	{
@@ -203,7 +203,7 @@
 		"toast": "Iechyd da",
 		"pronunciation": "Yeh-chid dah",
 		"translation": "Good health",
-		"locale": "en-gb",
+		"locale": "cy-cy",
 		"note": ""
 	},
 	{
@@ -212,7 +212,7 @@
 		"toast": "Sei gesund",
 		"pronunciation": "Say geh-sund",
 		"translation": "Be healthy",
-		"locale": "en-gb",
+		"locale": "yi-yi",
 		"note": ""
 	},
 	{
@@ -221,7 +221,7 @@
 		"toast": "Gëzuar",
 		"pronunciation": "Geh-zoo-ah",
 		"translation": "Cheers",
-		"locale": "en-gb",
+		"locale": "sq-sq",
 		"note": ""
 	},
 	{
@@ -248,7 +248,7 @@
 		"toast": "Živjeli",
 		"pronunciation": "Zhee-vi-lee",
 		"translation": "Cheers",
-		"locale": "en-gb",
+		"locale": "hr-hr",
 		"note": "The grammatically correct forms are, to a single man 'živio', to a single woman 'živjela', to a group of men 'živjeli', to a group of women 'živjele'"
 	},
 	{
@@ -257,7 +257,7 @@
 		"toast": "Наздраве",
 		"pronunciation": "Naz-dra-vey",
 		"translation": "Cheers",
-		"locale": "en-gb",
+		"locale": "bg-bg",
 		"note": ""
 	},
 	{
@@ -266,7 +266,7 @@
 		"toast": "Salut",
 		"pronunciation": "Sah-lut",
 		"translation": "Health",
-		"locale": "en-gb",
+		"locale": "ca-ca",
 		"note": ""
 	},
 	{
@@ -275,7 +275,7 @@
 		"toast": "Terviseks",
 		"pronunciation": "Ter-vih-sex",
 		"translation": "For health",
-		"locale": "en-gb",
+		"locale": "et-et",
 		"note": ""
 	},
 	{
@@ -284,7 +284,7 @@
 		"toast": "Chok dee",
 		"pronunciation": "Chok dee",
 		"translation": "Good luck",
-		"locale": "en-gb",
+		"locale": "th-th",
 		"note": ""
 	}
 ]
