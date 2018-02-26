@@ -5,6 +5,7 @@
 		"toast": "Gesondheid",
 		"pronunciation": "Ge-sund-hate",
 		"translation": "Health",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -13,6 +14,7 @@
 		"toast": "干杯 / gān bēi",
 		"pronunciation": "Gan bay",
 		"translation": "Cheers",
+		"locale": "zh-cn",
 		"note": ""
 	},
 	{
@@ -21,6 +23,7 @@
 		"toast": "Na zdravi",
 		"pronunciation": "Naz-drah vi",
 		"translation": "To health",
+		"locale": "en-gb",
 		"note": "Can also mean 'bless you', after sneezing!"
 	},
 	{
@@ -29,6 +32,7 @@
 		"toast": "Proost",
 		"pronunciation": "Prohst",
 		"translation": "Cheers",
+		"locale": "nl-nl",
 		"note": ""
 	},
 	{
@@ -37,6 +41,7 @@
 		"toast": "Santé",
 		"pronunciation": "Sahn-tay",
 		"translation": "Cheers",
+		"locale": "fr-fr",
 		"note": ""
 	},
 	{
@@ -45,6 +50,7 @@
 		"toast": "À votre santé!",
 		"pronunciation": "Ah la vo-tre sahn-tay",
 		"translation": "To your health",
+		"locale": "fr-fr",
 		"note": ""
 	},
 	{
@@ -53,6 +59,7 @@
 		"toast": "Prost",
 		"pronunciation": "Prohst",
 		"translation": "Cheers",
+		"locale": "de-de",
 		"note": "A very informal way of saying 'bless you' after someone sneezes. Be careful though as some might find this offensive!"
 	},
 	{
@@ -61,6 +68,7 @@
 		"toast": "Zum wohl",
 		"pronunciation": "Tsum vohl",
 		"translation": "To your health",
+		"locale": "de-de",
 		"note": "This is a more formal toast. Use this at your next business lunch!"
 	},
 	{
@@ -69,6 +77,7 @@
 		"toast": "υγεία",
 		"pronunciation": "Yamas",
 		"translation": "Health",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -77,6 +86,7 @@
 		"toast": "Sláinte",
 		"pronunciation": "S-lawn-cha",
 		"translation": "Health",
+		"locale": "gd-ie",
 		"note": ""
 	},
 	{
@@ -85,6 +95,7 @@
 		"toast": "Salute",
 		"pronunciation": "Saw-lutay",
 		"translation": "Health",
+		"locale": "it-it",
 		"note": ""
 	},
 	{
@@ -93,6 +104,7 @@
 		"toast": "Cin cin",
 		"pronunciation": "Chin chin",
 		"translation": "Cheers",
+		"locale": "it-it",
 		"note": ""
 	},
 	{
@@ -101,6 +113,7 @@
 		"toast": "乾杯 / Kampai",
 		"pronunciation": "Kam-pie",
 		"translation": "Empty your glass",
+		"locale": "en-gb",
 		"note": "The word Kenpai is used during funerals and memorial services to toast for the deceased with respect. If you ever attend a Japanese funeral service, just raise the glass and say Kenpai without clinking glasses."
 	},
 	{
@@ -109,6 +122,7 @@
 		"toast": "건배",
 		"pronunciation": "Gun bae",
 		"translation": "Bottoms up",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -117,6 +131,7 @@
 		"toast": "į sveikatą",
 		"pronunciation": "Ee sweh-kata",
 		"translation": "To your health",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -125,6 +140,7 @@
 		"toast": "Noroc",
 		"pronunciation": "No-rock",
 		"translation": "Luck",
+		"locale": "ro-mo",
 		"note": ""
 	},
 	{
@@ -133,6 +149,7 @@
 		"toast": "Na zdrowie",
 		"pronunciation": "Naz-droh-vee-ay",
 		"translation": "To your health",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -141,6 +158,7 @@
 		"toast": "Saúde",
 		"pronunciation": "Saw-OO-de",
 		"translation": "Health",
+		"locale": "pt-pt",
 		"note": ""
 	},
 	{
@@ -149,6 +167,7 @@
 		"toast": "Будем здоровы",
 		"pronunciation": "Budem zdorovi",
 		"translation": "We will be healthy",
+		"locale": "ru-mo",
 		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
 	},
 	{
@@ -157,6 +176,7 @@
 		"toast": "На здоровье",
 		"pronunciation": "Na zdorovie",
 		"translation": "To health",
+		"locale": "ru-mo",
 		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
 	},
 	{
@@ -165,6 +185,7 @@
 		"toast": "Salud",
 		"pronunciation": "Sah-lud",
 		"translation": "Health",
+		"locale": "es-es",
 		"note": ""
 	},
 	{
@@ -173,6 +194,7 @@
 		"toast": "Skål",
 		"pronunciation": "Skawl",
 		"translation": "Cheers",
+		"locale": "sv-se",
 		"note": "Don’t forget to look everyone in the eye!"
 	},
 	{
@@ -181,6 +203,7 @@
 		"toast": "Iechyd da",
 		"pronunciation": "Yeh-chid dah",
 		"translation": "Good health",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -189,6 +212,7 @@
 		"toast": "Sei gesund",
 		"pronunciation": "Say geh-sund",
 		"translation": "Be healthy",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -197,6 +221,7 @@
 		"toast": "Gëzuar",
 		"pronunciation": "Geh-zoo-ah",
 		"translation": "Cheers",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -205,6 +230,7 @@
 		"toast": "فى صحتك",
 		"pronunciation": "Fe sahetek",
 		"translation": "Good luck",
+		"locale": "ar-sy",
 		"note": ""
 	},
 	{
@@ -213,6 +239,7 @@
 		"toast": "Nuş olsun",
 		"pronunciation": "Nush ohlsun",
 		"translation": "Have a nice meal",
+		"locale": "az-az",
 		"note": ""
 	},
 	{
@@ -221,6 +248,7 @@
 		"toast": "Živjeli",
 		"pronunciation": "Zhee-vi-lee",
 		"translation": "Cheers",
+		"locale": "en-gb",
 		"note": "The grammatically correct forms are, to a single man 'živio', to a single woman 'živjela', to a group of men 'živjeli', to a group of women 'živjele'"
 	},
 	{
@@ -229,6 +257,7 @@
 		"toast": "Наздраве",
 		"pronunciation": "Naz-dra-vey",
 		"translation": "Cheers",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -237,6 +266,7 @@
 		"toast": "Salut",
 		"pronunciation": "Sah-lut",
 		"translation": "Health",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -245,6 +275,7 @@
 		"toast": "Terviseks",
 		"pronunciation": "Ter-vih-sex",
 		"translation": "For health",
+		"locale": "en-gb",
 		"note": ""
 	},
 	{
@@ -253,6 +284,7 @@
 		"toast": "Chok dee",
 		"pronunciation": "Chok dee",
 		"translation": "Good luck",
+		"locale": "en-gb",
 		"note": ""
 	}
 ]
