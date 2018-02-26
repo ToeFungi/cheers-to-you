@@ -1,15 +1,18 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../bower_components/app-route/app-location.html">
-<link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 
 <link rel="lazy-import" href="my-toast.html">
 
@@ -63,16 +66,20 @@
     </style>
 
     <app-location
-        route="{{route}}"
-        url-space-regex="^[[rootPath]]">
+            route="{{route}}"
+            url-space-regex="^[[rootPath]]">
     </app-location>
 
     <app-route
-        route="{{route}}"
-        pattern="[[rootPath]]:page"
-        data="{{routeData}}"
-        tail="{{subroute}}">
+            route="{{route}}"
+            pattern="[[rootPath]]:page"
+            data="{{routeData}}"
+            tail="{{subroute}}">
     </app-route>
+
+    <paper-toast id="toast" text="[[toast.message]]" duration="[[toast.duration]]" always-on-top>
+      <paper-icon-button class="close-toast" icon="close" on-click="_closeToast"></paper-icon-button>
+    </paper-toast>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
@@ -95,11 +102,11 @@
         </app-header>
 
         <iron-pages
-            selected="[[page]]"
-            attr-for-selected="name"
-            selected-attribute="active"
-            fallback-selection="view404"
-            role="main">
+                selected="[[page]]"
+                attr-for-selected="name"
+                selected-attribute="active"
+                fallback-selection="view404"
+                role="main">
           <my-toast name="toast" version="[[version]]"></my-toast>
         </iron-pages>
       </app-header-layout>
@@ -107,59 +114,75 @@
   </template>
 
   <script>
-    Polymer.setPassiveTouchGestures(true);
+      Polymer.setPassiveTouchGestures(true);
 
-    class MyApp extends Polymer.Element {
-      static get is() { return 'my-app'; }
+      class MyApp extends Polymer.Element {
+          static get is() { return 'my-app'; }
 
-      static get properties() {
-        return {
-          page: {
-            type: String,
-            reflectToAttribute: true,
-            observer: '_pageChanged'
-          },
-          routeData: Object,
-          subroute: Object,
-          rootPath: String,
-          version: {
-          	type: String,
-            value: '0.1.1'
+          static get properties() {
+              return {
+                  page: {
+                      type: String,
+                      reflectToAttribute: true,
+                      observer: '_pageChanged'
+                  },
+                  routeData: Object,
+                  subroute: Object,
+                  rootPath: String,
+                  version: {
+                      type: String,
+                      value: '0.1.2'
+                  },
+                  toast: Object
+              };
           }
-        };
+
+          static get observers() {
+              return [
+                  '_routePageChanged(routeData.page)'
+              ];
+          }
+
+          constructor() {
+              super();
+
+              this.addEventListener('toast', evt => this._makeToast(evt));
+          }
+
+          _routePageChanged(page) {
+              this.page = page || 'toast';
+
+              if (page === 'android_asset') this.page = 'toast';
+
+              if (!this.$.drawer.persistent) {
+                  this.$.drawer.close();
+              }
+          }
+
+          _pageChanged(page) {
+              if (page === 'android_asset') page = 'toast';
+              const resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
+              Polymer.importHref(
+                  resolvedPageUrl,
+                  null,
+                  this._showPage404.bind(this),
+                  true);
+          }
+
+          _makeToast(evt) {
+              this.toast = evt.detail;
+              this.$.toast.open();
+          }
+
+          _closeToast() {
+              this.$.toast.close();
+          }
+
+          _showPage404() {
+              this.page = 'view404';
+          }
       }
 
-      static get observers() {
-        return [
-          '_routePageChanged(routeData.page)'
-        ];
-      }
-
-      _routePageChanged(page) {
-        this.page = page || 'toast';
-
-				if (page === 'android_asset') this.page = 'toast';
-
-        if (!this.$.drawer.persistent) {
-          this.$.drawer.close();
-        }
-      }
-
-      _pageChanged(page) {
-				if (page === 'android_asset') page = 'toast';
-        const resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
-        Polymer.importHref(
-            resolvedPageUrl,
-            null,
-            this._showPage404.bind(this),
-            true);
-      }
-
-      _showPage404() {
-        this.page = 'view404';
-      }
-    }
-
-    window.customElements.define(MyApp.is, MyApp);
+      window.customElements.define(MyApp.is, MyApp);
   </script>
 </dom-module>

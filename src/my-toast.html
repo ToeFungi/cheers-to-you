@@ -76,15 +76,26 @@
           }
 
           _playSound() {
+              if(!window.TTS) {
+                  this.dispatchEvent(new CustomEvent('toast', {bubbles: true, composed: true, detail: {
+                          message: 'Your device doesn\'t like our speaker',
+                          duration: 10000
+                      }}));
+                  return;
+              }
               window.TTS
                   .speak({
                       text: this.selectedToast.pronunciation,
-                      locale: 'en-GB',
+                      locale: this.selectedToast.locale,
                       rate: 1
-                  }, function () {
-                      console.log('success');
-                  }, function (reason) {
+                  }, () => {
+                      console.log('Sound played successfully');
+                  }, (reason) => {
                       console.log(reason);
+                      this.dispatchEvent(new CustomEvent('toast', {bubbles: true, composed: true, detail: {
+                              message: 'Apologies, the speaker seems to be drunk!',
+                              duration: 10000
+                          }}));
                   });
           }
 
