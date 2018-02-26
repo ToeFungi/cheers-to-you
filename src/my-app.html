@@ -20,7 +20,7 @@
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
+        --app-primary-color: #00867d;
         --app-secondary-color: black;
 
         display: block;
@@ -62,6 +62,7 @@
       }
       [main-title] {
         font-size: 200%;
+        color: #000;
       }
     </style>
 
@@ -82,20 +83,11 @@
     </paper-toast>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
-      <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <!--<a name="toast" href="[[rootPath]]toast">View One</a>-->
-        </iron-selector>
-      </app-drawer>
-
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
 
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
-            <!--<paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>-->
             <div main-title>Let's Toast!</div>
             <iron-icon class="logo" src="images/icon.png"></iron-icon>
           </app-toolbar>
@@ -153,10 +145,6 @@
               this.page = page || 'toast';
 
               if (page === 'android_asset') this.page = 'toast';
-
-              if (!this.$.drawer.persistent) {
-                  this.$.drawer.close();
-              }
           }
 
           _pageChanged(page) {
