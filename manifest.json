@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App description",
+  "name": "Lets Toast",
+  "short_name": "Lets Toast",
+  "description": "An application that gives you the ability to toast in multiple different languages!",
   "icons": [
     {
       "src": "images/manifest/icon-192x192.png",
