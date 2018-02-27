@@ -132,11 +132,16 @@
 
           _populateWindow() {
               this.previousToast = this.selectedToast;
-              this.selectedToast = this.toasts[this._getRandomToast()];
+              this.selectedToast = this._getRandomToast();
           }
 
           _getRandomToast() {
-              return Math.floor(Math.random() * Math.floor(this.toasts.length));
+              let newToast = this.toasts[Math.floor(Math.random() * Math.floor(this.toasts.length))];
+
+              while (newToast === this.selectedToast)
+                  newToast = this.toasts[Math.floor(Math.random() * Math.floor(this.toasts.length))];
+
+              return newToast;
           }
       }
 
