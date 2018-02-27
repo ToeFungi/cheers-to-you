@@ -7,7 +7,7 @@ This isn't designed to run on a web browser. It's supposed to be used in conjunc
 
 ### Downloads
 
-You can download the latest available Android APK [here](https://github.com/ToeFungi/lets-toast)
+You can download the latest available Android APK [here](https://downloads.thetoefungi.co.za/lets-toast.apk)
 
 ### Versioning
 
