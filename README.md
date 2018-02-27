@@ -15,6 +15,7 @@ These instructions will get you a copy of the project up and running on your loc
 ## Installing
 
 Run `bower install` to install the necessary dependencies and use `polymer serve` from the project's root directory.
+Note that this is a web hosted version and the application isn't designed for this. It's designed to be wrapped with Cordova and turned into an APK.
 
 ### Versioning
 
