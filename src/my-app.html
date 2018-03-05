@@ -15,6 +15,7 @@
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 
 <link rel="lazy-import" href="my-toast.html">
+<link rel="lazy-import" href="my-language-selector.html">
 
 <dom-module id="my-app">
   <template>
@@ -86,10 +87,18 @@
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Main content -->
+      <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
+        <app-toolbar>Let's Toast!</app-toolbar>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="toast" href="[[rootPath]]toast">Random Toasts</a>
+          <a name="language-selector" href="[[rootPath]]language-selector">Languages</a>
+        </iron-selector>
+      </app-drawer>
       <app-header-layout has-scrolling-region>
 
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
+            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <div main-title>Let's Toast!</div>
             <iron-icon class="logo" src="images/icon.png"></iron-icon>
           </app-toolbar>
@@ -101,7 +110,8 @@
                 selected-attribute="active"
                 fallback-selection="view404"
                 role="main">
-          <my-toast name="toast" version="[[version]]"></my-toast>
+          <my-toast name="toast" toasts="[[toasts]]" version="[[version]]"></my-toast>
+          <my-language-selector name="language-selector" toasts="[[toasts]]" version="[[version]]"></my-language-selector>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -125,8 +135,9 @@
                   rootPath: String,
                   version: {
                       type: String,
-                      value: '0.1.4'
+                      value: '0.2.4'
                   },
+                  toasts: Array,
                   toast: Object
               };
           }
@@ -140,13 +151,30 @@
           constructor() {
               super();
 
+              this._getToasts();
               this.addEventListener('toast', evt => this._makeToast(evt));
+          }
+
+          _getToasts() {
+              new Promise((resolve, reject) => {
+                  let xhr = new XMLHttpRequest;
+                  xhr.onload = () => resolve(new Response(xhr.responseText, {status: xhr.status}));
+                  xhr.onerror = () => reject(new TypeError('Local request failed'));
+                  xhr.open('GET', 'res/language_toasts.json');
+                  xhr.send(null);
+              })
+                  .then((resp) => resp.json())
+                  .then((data) => this.toasts = data)
+                  .catch(() => this._makeToast({message: 'We couldn\'t find the drinks menu.', duration: 10000}));
           }
 
           _routePageChanged(page) {
               this.page = page || 'toast';
 
               if (page === 'android_asset') this.page = 'toast';
+              if (!this.$.drawer.persistent) {
+                  this.$.drawer.close();
+              }
           }
 
           _pageChanged(page) {

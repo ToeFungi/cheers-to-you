@@ -1,0 +1,70 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-language-display">
+    <template>
+        <style include="shared-styles iron-flex">
+            :host {
+                display: block;
+                padding: 0 1em;
+            }
+
+            .toast {
+                margin-bottom: 0.2em;
+            }
+
+            .pronunciation {
+                margin-top: 0;
+                font-style: italic;
+            }
+        </style>
+
+        <h1>[[toast.language]]</h1>
+        <p class="toast">[[toast.toast]]</p>
+        <p class="pronunciation">- [[toast.pronunciation]] <paper-icon-button on-tap="_playTTS" icon="av:volume-up"></paper-icon-button></p>
+        <p class="translation">"[[toast.translation]]"</p>
+        <p class="note">[[toast.note]]</p>
+
+    </template>
+    <script>
+        class MyLanguageDisplay extends Polymer.Element {
+            static get is() { return 'my-language-display'; }
+
+            static get properties() {
+                return {
+                    toast: Array
+                }
+            }
+
+            _playTTS() {
+                if (!window.TTS)
+                    return this._messageDispatch({message: 'Your device doesn\'t like our speaker', duration: 5000});
+
+                window.TTS
+                    .speak({
+                        text: this.toast.ttsWord,
+                        locale: this.toast.locale,
+                        rate: 1
+                    }, () => {
+                        console.log('Sound played successfully');
+                    }, (reason) => {
+                        console.log(reason);
+                        this._messageDispatch({message: 'Apologies, the speaker seems to be drunk!', duration: 5000});
+                    });
+            }
+
+            _messageDispatch(evt) {
+                this.dispatchEvent(new CustomEvent('toast', {bubbles: true, composed: true, detail: {
+                        message: evt.message,
+                        duration: evt.duration
+                    }}));
+            }
+        }
+
+        window.customElements.define(MyLanguageDisplay.is, MyLanguageDisplay);
+    </script>
+</dom-module>

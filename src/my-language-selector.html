@@ -1,0 +1,38 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../src/my-wizard.html">
+<link rel="import" href="../src/my-wizard-step.html">
+<link rel="import" href="../src/my-language-display.html">
+
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-language-selector">
+    <template>
+        <style include="shared-styles iron-flex">
+            :host {
+                display: block;
+            }
+        </style>
+
+        <my-wizard>
+            <template is="dom-repeat" items="[[toasts]]">
+                <my-wizard-step step-name="[[item.language]]">
+                    <my-language-display toast="[[item]]"></my-language-display>
+                </my-wizard-step>
+            </template>
+        </my-wizard>
+    </template>
+    <script>
+        class MyLanguageSelector extends Polymer.Element {
+            static get is() { return 'my-language-selector'; }
+
+            static get properties() {
+                return {
+                    toasts: Array
+                }
+            }
+        }
+
+        window.customElements.define(MyLanguageSelector.is, MyLanguageSelector);
+    </script>
+</dom-module>

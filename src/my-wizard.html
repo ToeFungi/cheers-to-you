@@ -1,0 +1,54 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../src/my-wizard-step.html">
+
+<dom-module id="my-wizard">
+    <template>
+        <style include="shared-styles iron-flex">
+            :host {
+                display: block;
+                margin: 0 auto;
+            }
+
+            .wizard-card {
+                margin: 0 auto;
+                max-width: 600px;
+                background-color: #FFF;
+                box-shadow: var(--drop-shadow-00);
+                transition: box-shadow 50ms ease;
+            }
+
+            .wizard-card:hover {
+                box-shadow: var(--drop-shadow-00-hover);
+            }
+        </style>
+
+        <div class="wizard-card layout vertical">
+            <slot></slot>
+        </div>
+    </template>
+
+    <script>
+        class MyWizard extends Polymer.Element {
+            static get is() {
+                return 'my-wizard';
+            }
+
+            ready() {
+                super.ready();
+                this.addEventListener('wizard-open-toggle', this._editStep);
+            }
+
+            _editStep({detail: {step}}) {
+                Array.from(step.parentNode.children).forEach(function (siblingStep) {
+                    siblingStep.open = false
+                });
+                step.open = true;
+            }
+        }
+
+        window.customElements.define(MyWizard.is, MyWizard);
+    </script>
+</dom-module>

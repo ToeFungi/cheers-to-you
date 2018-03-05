@@ -28,36 +28,38 @@
       .version {
         text-align: center;
       }
+
+      .buttons {
+        color: #000;
+      }
     </style>
 
     <div class="card">
-      <h1>[[selectedToast.language]]</h1>
-      <p class="toast">[[selectedToast.toast]]</p>
-      <p class="pronunciation">- [[selectedToast.pronunciation]] <paper-icon-button on-tap="_playTTS" icon="av:volume-up"></paper-icon-button></p>
-      <p class="translation">"[[selectedToast.translation]]"</p>
-      <p class="note">[[selectedToast.note]]</p>
-
-      <!--<div class="layout horizontal">-->
-        <!--<div class="flex">-->
-          <!--<paper-button raised hidden$="[[_hidePreviousBtn(previousToast, selectedToast)]]" on-click="_previousToast">No! Back one!</paper-button>-->
-        <!--</div>-->
-        <!--<div class="flex"></div>-->
-        <!--<div class="flex">-->
-          <!--<paper-button raised on-click="_populateWindow">Let's have another</paper-button>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <div class="layout horizontal">
-        <div hidden$="[[_hidePreviousBtn(previousToast, selectedToast)]]" on-click="_previousToast">
-          <paper-icon-button icon="arrow-back"></paper-icon-button>
-          Wait, Go Back!
+      <template is="dom-if" if="[[!toasts.length]]">
+        <div>
+          Preparing to drink!
         </div>
-        <div class="flex"></div>
-        <div on-click="_populateWindow">
-          Another Round!
-          <paper-icon-button icon="arrow-forward"></paper-icon-button>
+      </template>
+
+      <template is="dom-if" if="[[toasts.length]]">
+        <h1>[[selectedToast.language]]</h1>
+        <p class="toast">[[selectedToast.toast]]</p>
+        <p class="pronunciation">- [[selectedToast.pronunciation]] <paper-icon-button on-tap="_playTTS" icon="av:volume-up"></paper-icon-button></p>
+        <p class="translation">"[[selectedToast.translation]]"</p>
+        <p class="note">[[selectedToast.note]]</p>
+
+        <div class="layout horizontal buttons">
+          <div hidden$="[[_hidePreviousBtn(previousToast, selectedToast)]]" on-click="_previousToast">
+            <paper-icon-button icon="arrow-back"></paper-icon-button>
+            Wait, Go Back!
+          </div>
+          <div class="flex"></div>
+          <div on-click="_populateWindow">
+            Another Round!
+            <paper-icon-button icon="arrow-forward"></paper-icon-button>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
 
     <p class="version">Version: [[version]]</p>
@@ -69,31 +71,15 @@
 
           static get properties() {
               return {
-                  active: {
-                      type: Boolean,
-                      observer: '_getToasts'
+                  toasts: {
+                      type: Array,
+                      value: [],
+                      observer: '_populateWindow'
                   },
-                  toasts: Array,
                   selectedToast: Object,
                   previousToast: Object,
                   version: String
               }
-          }
-
-          _getToasts(active) {
-              if (!active) return;
-
-              new Promise((resolve, reject) => {
-                  let xhr = new XMLHttpRequest;
-                  xhr.onload = () => resolve(new Response(xhr.responseText, {status: xhr.status}));
-                  xhr.onerror = () => reject(new TypeError('Local request failed'));
-                  xhr.open('GET', 'res/language_toasts.json');
-                  xhr.send(null);
-              })
-                  .then((resp) => resp.json())
-                  .then((data) => this.toasts = data)
-                  .then(() => this._populateWindow())
-                  .catch(() => alert('Something went wrong.'));
           }
 
           _hidePreviousBtn(previousToast, selectedToast) {
