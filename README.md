@@ -9,6 +9,8 @@ This isn't designed to run on a web browser. It's supposed to be used in conjunc
 
 You can download the latest available Android APK [here](https://downloads.thetoefungi.co.za/lets-toast.apk)
 
+Please be aware that the latest available APK may not be the latest release on GitHub. It's still subject to a manual release. Something I am working on rectifying.
+
 ### Versioning
 
 We use [SemVer](http://semver.org/) for versioning.
