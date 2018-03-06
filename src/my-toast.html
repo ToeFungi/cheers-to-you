@@ -25,10 +25,6 @@
         font-style: italic;
       }
 
-      .version {
-        text-align: center;
-      }
-
       .buttons {
         color: #000;
       }
@@ -43,8 +39,12 @@
 
       <template is="dom-if" if="[[toasts.length]]">
         <h1>[[selectedToast.language]]</h1>
+
         <p class="toast">[[selectedToast.toast]]</p>
-        <p class="pronunciation">- [[selectedToast.pronunciation]] <paper-icon-button on-tap="_playTTS" icon="av:volume-up"></paper-icon-button></p>
+        <p class="pronunciation">
+          - [[selectedToast.pronunciation]]
+          <paper-icon-button on-tap="_playTTS" icon="av:volume-up"></paper-icon-button>
+        </p>
         <p class="translation">"[[selectedToast.translation]]"</p>
         <p class="note">[[selectedToast.note]]</p>
 
@@ -53,7 +53,9 @@
             <paper-icon-button icon="arrow-back"></paper-icon-button>
             Wait, Go Back!
           </div>
+
           <div class="flex"></div>
+
           <div on-click="_populateWindow">
             Another Round!
             <paper-icon-button icon="arrow-forward"></paper-icon-button>
@@ -61,8 +63,6 @@
         </div>
       </template>
     </div>
-
-    <p class="version">Version: [[version]]</p>
   </template>
 
   <script>
@@ -77,8 +77,7 @@
                       observer: '_populateWindow'
                   },
                   selectedToast: Object,
-                  previousToast: Object,
-                  version: String
+                  previousToast: Object
               }
           }
 
@@ -96,18 +95,18 @@
                       locale: this.selectedToast.locale,
                       rate: 1
                   }, () => {
-                      console.log('Sound played successfully');
-                  }, (reason) => {
-                      console.log(reason);
+                  }, (err) => {
                       this._messageDispatch({message: 'Apologies, the speaker seems to be drunk!', duration: 5000});
                   });
           }
 
           _messageDispatch(evt) {
-              this.dispatchEvent(new CustomEvent('toast', {bubbles: true, composed: true, detail: {
+              this.dispatchEvent(new CustomEvent('toast', {
+                  bubbles: true, composed: true, detail: {
                       message: evt.message,
                       duration: evt.duration
-                  }}));
+                  }
+              }));
           }
 
           _previousToast() {

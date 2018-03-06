@@ -1,7 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
-<link rel="import" href="../src/my-wizard.html">
-<link rel="import" href="../src/my-wizard-step.html">
+
+<link rel="import" href="../src/my-language-card.html">
 <link rel="import" href="../src/my-language-display.html">
 
 <link rel="import" href="shared-styles.html">
@@ -11,16 +13,30 @@
         <style include="shared-styles iron-flex">
             :host {
                 display: block;
+                margin: 0 auto;
+                opacity: 0.9;
+            }
+
+            .language-dropdown {
+                background-color: #FFF;
             }
         </style>
 
-        <my-wizard>
-            <template is="dom-repeat" items="[[toasts]]">
-                <my-wizard-step step-name="[[item.language]]">
-                    <my-language-display toast="[[item]]"></my-language-display>
-                </my-wizard-step>
-            </template>
-        </my-wizard>
+        <template is="dom-if" if="[[!toasts.length]]">
+            <div>
+                Preparing to drink!
+            </div>
+        </template>
+
+        <template is="dom-if" if="[[toasts.length]]">
+            <div class="language-dropdown layout vertical">
+                <template is="dom-repeat" items="[[toasts]]">
+                    <my-language-card step-name="[[item.language]]">
+                        <my-language-display toast="[[item]]"></my-language-display>
+                    </my-language-card>
+                </template>
+            </div>
+        </template>
     </template>
     <script>
         class MyLanguageSelector extends Polymer.Element {
@@ -30,6 +46,18 @@
                 return {
                     toasts: Array
                 }
+            }
+
+            ready() {
+                super.ready();
+                this.addEventListener('dropdown-open', this._openCard);
+            }
+
+            _openCard({detail: {step}}) {
+                Array.from(step.parentNode.children).forEach(function (siblingStep) {
+                    siblingStep.open = false
+                });
+                step.open = true;
             }
         }
 

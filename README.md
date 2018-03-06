@@ -5,6 +5,8 @@ A multilingual toasting application. Giving a random language to toast in with a
 
 This isn't designed to run on a web browser. It's supposed to be used in conjunction with Apache Cordova to generate an APK.
 
+*This application is a portfolio project*
+
 ### Downloads
 
 You can download the latest available Android APK [here](https://downloads.thetoefungi.co.za/lets-toast.apk)

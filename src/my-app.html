@@ -8,8 +8,10 @@
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
@@ -19,7 +21,7 @@
 
 <dom-module id="my-app">
   <template>
-    <style>
+    <style include="iron-flex">
       :host {
         --app-primary-color: #29434e;
         --app-secondary-color: black;
@@ -41,6 +43,19 @@
         --paper-icon-button-ink-color: white;
       }
 
+      app-drawer > app-toolbar {
+        color: #fff;
+        font-size: 175%;
+        font-weight: bold;
+        background-color: var(--app-primary-color);
+      }
+
+      .version {
+        margin-top: 2em;
+        font-size: small;
+        text-align: center;
+      }
+
       .drawer-list {
         margin: 0 20px;
       }
@@ -48,7 +63,8 @@
       .drawer-list a {
         display: block;
         padding: 0 16px;
-        line-height: 40px;
+        font-size: 150%;
+        line-height: 60px;
         text-decoration: none;
         color: var(--app-secondary-color);
       }
@@ -62,6 +78,7 @@
         width: 40px;
         height: 40px;
       }
+
       [main-title] {
         color: #fff;
         font-size: 200%;
@@ -81,21 +98,27 @@
             tail="{{subroute}}">
     </app-route>
 
-    <paper-toast id="toast" text="[[toast.message]]" duration="[[toast.duration]]" always-on-top>
+    <paper-toast id="toastMsg" text="[[toastMsg.message]]" duration="[[toastMsg.duration]]" always-on-top>
       <paper-icon-button class="close-toast" icon="close" on-click="_closeToast"></paper-icon-button>
     </paper-toast>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
-      <!-- Main content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-        <app-toolbar>Let's Toast!</app-toolbar>
+        <app-toolbar>
+          <div>Let's Toast!</div>
+        </app-toolbar>
+
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="toast" href="[[rootPath]]toast">Random Toasts</a>
           <a name="language-selector" href="[[rootPath]]language-selector">Languages</a>
         </iron-selector>
-      </app-drawer>
-      <app-header-layout has-scrolling-region>
 
+        <div class="version">
+          Version [[version]]
+        </div>
+      </app-drawer>
+
+      <app-header-layout has-scrolling-region>
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
@@ -110,8 +133,8 @@
                 selected-attribute="active"
                 fallback-selection="view404"
                 role="main">
-          <my-toast name="toast" toasts="[[toasts]]" version="[[version]]"></my-toast>
-          <my-language-selector name="language-selector" toasts="[[toasts]]" version="[[version]]"></my-language-selector>
+          <my-toast name="toast" toasts="[[toasts]]"></my-toast>
+          <my-language-selector name="language-selector" toasts="[[toasts]]"></my-language-selector>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -135,10 +158,10 @@
                   rootPath: String,
                   version: {
                       type: String,
-                      value: '0.2.0'
+                      value: '0.2.1'
                   },
                   toasts: Array,
-                  toast: Object
+                  toastMsg: Object
               };
           }
 
@@ -188,12 +211,12 @@
           }
 
           _makeToast(evt) {
-              this.toast = evt.detail;
-              this.$.toast.open();
+              this.toastMsg = evt.detail;
+              this.$.toastMsg.open();
           }
 
           _closeToast() {
-              this.$.toast.close();
+              this.$.toastMsg.close();
           }
 
           _showPage404() {
