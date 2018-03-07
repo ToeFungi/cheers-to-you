@@ -48,15 +48,24 @@
                 }
             }
 
-            ready() {
-                super.ready();
+            constructor() {
+                super();
+
+                this.addEventListener('dropdown-close', this._closeCard);
                 this.addEventListener('dropdown-open', this._openCard);
             }
 
+            _closeCard({detail: {step}}) {
+                if (step.open) return step.open = false;
+            }
+
             _openCard({detail: {step}}) {
+                if (step.open) return;
+
                 Array.from(step.parentNode.children).forEach(function (siblingStep) {
                     siblingStep.open = false
                 });
+
                 step.open = true;
             }
         }

@@ -19,8 +19,8 @@
                 margin: 0;
             }
 
-            h1 {
-                margin: 0 0 0.5em 0;
+            .toast {
+                margin: 0.5em 0 0 0;
             }
 
             .pronunciation {
@@ -29,14 +29,13 @@
             }
         </style>
 
-        <h1>[[toast.language]]</h1>
         <p class="toast">[[toast.toast]]</p>
         <p class="pronunciation">
             - [[toast.pronunciation]]
             <paper-icon-button on-tap="_playTTS" icon="av:volume-up"></paper-icon-button>
         </p>
-        <p class="translation">"[[toast.translation]]"</p>
-        <p class="note">[[toast.note]]</p>
+        <p>"[[toast.translation]]"</p>
+        <p>[[toast.note]]</p>
 
     </template>
     <script>
