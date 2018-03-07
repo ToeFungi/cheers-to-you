@@ -101,7 +101,7 @@
       <paper-icon-button class="close-toast" icon="close" on-click="_closeToast"></paper-icon-button>
     </paper-toast>
 
-    <app-drawer-layout fullbleed narrow="{{narrow}}">
+    <app-drawer-layout fullbleed force-narrow>
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
         <app-toolbar>
           <div>Let's Toast!</div>
@@ -157,7 +157,7 @@
                   rootPath: String,
                   version: {
                       type: String,
-                      value: '0.2.2'
+                      value: '0.2.3'
                   },
                   toasts: Array,
                   toastMsg: Object
@@ -196,11 +196,11 @@
                   .then((resp) => resp.json())
                   .then((data) => {
                       this.toasts = data.sort((a, b) => {
-                          let itemA = a.language.toUpperCase();
-                          let itemB = b.language.toUpperCase();
+                          let langA = a.language.toUpperCase();
+                          let langB = b.language.toUpperCase();
 
-                          if (itemA < itemB) return -1;
-                          if (itemA > itemB) return 1;
+                          if (langA < langB) return -1;
+                          if (langA > langB) return 1;
                           return 0;
                       });
                   })
