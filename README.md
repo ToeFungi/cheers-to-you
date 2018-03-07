@@ -9,9 +9,10 @@ This isn't designed to run on a web browser. It's supposed to be used in conjunc
 
 ### Downloads
 
-You can download the latest available Android APK [here](https://downloads.thetoefungi.co.za/lets-toast.apk)
+The app is available on Google Play Store [here](https://play.google.com/store/apps/details?id=com.thetoefungi.toaster)
 
-Please be aware that the latest available APK may not be the latest release on GitHub. It's still subject to a manual release. Something I am working on rectifying.
+Although please note that as of 8 March 2018, the app is still in closed Alpha. To get the latest non-release app,
+you can download that from [here](https://downloads.thetoefungi.co.za/lets-toast.apk)
 
 ### Versioning
 
