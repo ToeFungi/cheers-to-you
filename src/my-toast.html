@@ -76,8 +76,25 @@
                       value: [],
                       observer: '_populateWindow'
                   },
+                  counter: {
+                      type: Number,
+                      value: 0,
+                      observer: '_showAd'
+                  },
                   selectedToast: Object,
                   previousToast: Object
+              }
+          }
+
+          _showAd(counter) {
+              if (counter < 16) return;
+
+              this.counter = 1;
+              if (window.AdMob) {
+                  window.AdMob.prepareInterstitial({
+                      adId: window.admob.interstitial,
+                      autoShow: true
+                  });
               }
           }
 
@@ -114,6 +131,7 @@
           }
 
           _populateWindow() {
+              this.counter += 1;
               this.previousToast = this.selectedToast;
               this.selectedToast = this._getRandomToast();
           }
