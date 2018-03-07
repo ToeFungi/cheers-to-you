@@ -31,12 +31,12 @@
 
         <div class="language-card" on-click="_open">
             <div class="layout horizontal justified">
-                <div>
-                    <h2>[[stepName]]</h2>
+                <div class="flex">
+                    <h2>[[cardTitle]]</h2>
                 </div>
-                <div class="flex"></div>
+
                 <div hidden$="[[!open]]">
-                    <paper-icon-button icon="close" on-tap="_close"></paper-icon-button>
+                    <paper-icon-button icon="close" on-click="_close"></paper-icon-button>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
 
             static get properties() {
                 return {
-                    stepName: String,
+                    cardTitle: String,
                     open: {
                         type: Boolean,
                         value: false
@@ -63,7 +63,7 @@
             }
 
             _close() {
-                this.dispatchEvent(new CustomEvent('dropdown-close', {
+                this.dispatchEvent(new CustomEvent('card-close', {
                     bubbles: true, composed: true, detail: {
                         step: this
                     }
@@ -73,7 +73,7 @@
             _open() {
                 if (this.open) return;
 
-                this.dispatchEvent(new CustomEvent('dropdown-open', {
+                this.dispatchEvent(new CustomEvent('card-open', {
                     bubbles: true, composed: true, detail: {
                         step: this
                     }
