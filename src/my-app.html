@@ -173,6 +173,14 @@
           constructor() {
               super();
 
+              if (window.AdMob && window.admob.banner !== 'ADMOB_BANNER_ID') {
+                  window.AdMob.createBanner({
+                      adId: window.admob.banner,
+                      position: AdMob.AD_POSITION.BOTTOM_CENTER,
+                      autoShow: true
+                  });
+              }
+
               this._getToasts();
               this.addEventListener('toast', evt => this._makeToast(evt));
           }
