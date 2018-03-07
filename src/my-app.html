@@ -194,7 +194,16 @@
                   xhr.send(null);
               })
                   .then((resp) => resp.json())
-                  .then((data) => this.toasts = data)
+                  .then((data) => {
+                      this.toasts = data.sort((a, b) => {
+                          let itemA = a.language.toUpperCase();
+                          let itemB = b.language.toUpperCase();
+
+                          if (itemA < itemB) return -1;
+                          if (itemA > itemB) return 1;
+                          return 0;
+                      });
+                  })
                   .catch(() => this._makeToast({message: 'We couldn\'t find the drinks menu.', duration: 10000}));
           }
 
