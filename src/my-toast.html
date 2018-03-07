@@ -127,11 +127,13 @@
           }
 
           _previousToast() {
+              window.navigator.vibrate(50);
               this.selectedToast = this.previousToast;
           }
 
           _populateWindow() {
               this.counter += 1;
+              window.navigator.vibrate(50);
               this.previousToast = this.selectedToast;
               this.selectedToast = this._getRandomToast();
           }
