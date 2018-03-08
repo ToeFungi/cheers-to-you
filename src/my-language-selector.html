@@ -22,22 +22,15 @@
             }
         </style>
 
-        <template is="dom-if" if="[[!toasts.length]]">
-            <div>
-                Preparing to drink!
-            </div>
-        </template>
-
-        <template is="dom-if" if="[[toasts.length]]">
-            <div class="language-dropdown layout vertical">
-                <template is="dom-repeat" items="[[toasts]]">
-                    <my-language-card card-title="[[item.language]]">
-                        <my-language-display toast="[[item]]"></my-language-display>
-                    </my-language-card>
-                </template>
-            </div>
-        </template>
+        <div class="language-dropdown layout vertical">
+            <template is="dom-repeat" items="[[toasts]]">
+                <my-language-card card-title="[[item.language]]">
+                    <my-language-display toast="[[item]]"></my-language-display>
+                </my-language-card>
+            </template>
+        </div>
     </template>
+
     <script>
         class MyLanguageSelector extends Polymer.Element {
             static get is() { return 'my-language-selector'; }
