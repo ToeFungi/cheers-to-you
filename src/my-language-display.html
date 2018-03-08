@@ -5,6 +5,8 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="shared-styles.html">
 
+<link rel="import" href="../src/my-text-to-speech.html">
+
 <dom-module id="my-language-display">
     <template>
         <style include="shared-styles iron-flex">
@@ -29,6 +31,8 @@
             }
         </style>
 
+        <my-text-to-speech id="tts" word="[[toast.ttsWord]]" locale="[[toast.locale]]"></my-text-to-speech>
+
         <p class="toast">[[toast.toast]]</p>
         <p class="pronunciation">
             &nbsp;- [[toast.pronunciation]]
@@ -48,19 +52,15 @@
                 }
             }
 
-            _playTTS() {
-                if (!window.TTS)
-                    return this._messageDispatch({message: 'Your device doesn\'t like our speaker', duration: 5000});
+            constructor() {
+                super();
 
-                window.TTS
-                    .speak({
-                        text: this.toast.ttsWord,
-                        locale: this.toast.locale,
-                        rate: 1
-                    }, () => {
-                    }, (err) => {
-                        this._messageDispatch({message: 'Apologies, the speaker seems to be drunk!', duration: 5000});
-                    });
+                this.addEventListener('tts-missing', () => this._messageDispatch({message: 'Your device doesn\'t like our speaker', duration: 5000}));
+                this.addEventListener('tts-failure', () => this._messageDispatch({message: 'Apologies, the speaker seems to be drunk!', duration: 5000}));
+            }
+
+            _playTTS() {
+                this.$.tts.speak();
             }
 
             _messageDispatch(evt) {

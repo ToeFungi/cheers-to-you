@@ -1,0 +1,60 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="my-text-to-speech">
+    <script>
+        class MyTextToSpeech extends Polymer.Element {
+            static get is() {
+                return 'my-text-to-speech';
+            }
+
+            static get properties() {
+                return {
+                    word: String,
+                    locale: String,
+                    rate: {
+                        type: Number,
+                        value: 1
+                    }
+                }
+            }
+
+            speak() {
+                if (!window.TTS) {
+                    return this.dispatchEvent(new CustomEvent('tts-missing', {
+                        bubbles: true, composed: true, detail: {
+                            message: 'TTS Plugin Missing',
+                            status: 'failure',
+                            code: 0
+                        }
+                    }));
+                }
+
+                window.TTS
+                    .speak({
+                        text: this.word,
+                        locale: this.locale,
+                        rate: this.rate
+                    }, () => {
+                        this.dispatchEvent(new CustomEvent('tts-success', {
+                            bubbles: true, composed: true, detail: {
+                                message: 'TTS Speak Successful',
+                                status: 'success',
+                                code: 2
+                            }
+                        }));
+                    }, (err) => {
+                        this.dispatchEvent(new CustomEvent('tts-failure', {
+                            bubbles: true, composed: true, detail: {
+                                message: 'TTS Speak Failed',
+                                debug: err,
+                                status: 'failure',
+                                code: 1
+                            }
+                        }));
+                    });
+            }
+        }
+
+        window.customElements.define(MyTextToSpeech.is, MyTextToSpeech);
+    </script>
+</dom-module>

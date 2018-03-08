@@ -10,6 +10,7 @@
 <link rel="import" href="shared-styles.html">
 
 <link rel="import" href="../src/my-note-display.html">
+<link rel="import" href="../src/my-text-to-speech.html">
 
 <dom-module id="my-toast">
     <template>
@@ -49,6 +50,8 @@
                 max-height: 24px;
             }
         </style>
+
+        <my-text-to-speech id="tts" word="[[selectedToast.ttsWord]]" locale="[[selectedToast.locale]]"></my-text-to-speech>
 
         <div class="card">
             <h1>[[selectedToast.language]]</h1>
@@ -99,6 +102,17 @@
                 }
             }
 
+            constructor() {
+                super();
+
+                this.addEventListener('tts-missing', () => this._messageDispatch({message: 'Your device doesn\'t like our speaker', duration: 5000}));
+                this.addEventListener('tts-failure', () => this._messageDispatch({message: 'Apologies, the speaker seems to be drunk!', duration: 5000}));
+            }
+
+            _playTTS() {
+                this.$.tts.speak();
+            }
+
             _showAd(counter) {
                 if (counter < 16) return;
 
@@ -113,27 +127,6 @@
 
             _hidePreviousBtn(previousToast, selectedToast) {
                 return previousToast === selectedToast || this.previousToast === undefined;
-            }
-
-            _playTTS() {
-                if (!window.TTS)
-                    return this._messageDispatch({
-                        message: 'Your device doesn\'t like our speaker',
-                        duration: 5000
-                    });
-
-                window.TTS
-                    .speak({
-                        text: this.selectedToast.ttsWord,
-                        locale: this.selectedToast.locale,
-                        rate: 1
-                    }, () => {
-                    }, (err) => {
-                        this._messageDispatch({
-                            message: 'Apologies, the speaker seems to be drunk!',
-                            duration: 5000
-                        });
-                    });
             }
 
             _messageDispatch(evt) {
