@@ -4,6 +4,7 @@
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
@@ -16,17 +17,48 @@
         display: block;
       }
 
-      .toast {
-        margin-bottom: 0.2em;
+      h1 {
+        margin: 0 0 0.2em 0;
+      }
+
+      h2 {
+        color: #212121;
+        font-size: 125%;
+        font-weight: 400;
+        margin: 0 0 0.2em 0;
+      }
+
+      p {
+        margin: 0;
       }
 
       .pronunciation {
-        margin-top: 0;
         font-style: italic;
+        margin-bottom: 0.5em;
       }
 
       .buttons {
-        color: #000;
+        color: #212121;
+        margin-top: 3em;
+      }
+
+      .note-card {
+        margin: 0.5em 0;
+        font-style: italic;
+      }
+
+      .note-card > div {
+        color: #212121;
+      }
+
+      iron-icon {
+        margin-left: 1em;
+      }
+
+      paper-icon-button {
+        padding: 0;
+        max-width: 24px;
+        max-height: 24px;
       }
     </style>
 
@@ -40,13 +72,33 @@
       <template is="dom-if" if="[[toasts.length]]">
         <h1>[[selectedToast.language]]</h1>
 
-        <p class="toast">[[selectedToast.toast]]</p>
+        <p>[[selectedToast.toast]]</p>
         <p class="pronunciation">
-          - [[selectedToast.pronunciation]]
+          &nbsp;- [[selectedToast.pronunciation]]
           <paper-icon-button on-click="_playTTS" icon="av:volume-up"></paper-icon-button>
         </p>
-        <p class="translation">"[[selectedToast.translation]]"</p>
-        <p class="note">[[selectedToast.note]]</p>
+        <p>"[[selectedToast.translation]]"</p>
+
+        <div class="note-card" on-tap="_toggleNote">
+          <div hidden$="[[!_computeSeeNotes(opened, selectedToast.note)]]">
+            See notes
+            <iron-icon icon="arrow-drop-down"></iron-icon>
+          </div>
+
+          <div hidden$="[[!_computeNoNotes(opened, selectedToast.note)]]">
+            No notes
+            <iron-icon icon="remove"></iron-icon>
+          </div>
+
+          <div hidden$="[[!opened]]">
+            Close notes
+            <iron-icon icon="arrow-drop-up"></iron-icon>
+          </div>
+
+          <iron-collapse opened="[[opened]]">
+            <p hidden$="[[_showNote(selectedToast.note)]]">[[selectedToast.note]]</p>
+          </iron-collapse>
+        </div>
 
         <div class="layout horizontal buttons">
           <div hidden$="[[_hidePreviousBtn(previousToast, selectedToast)]]" on-click="_previousToast">
@@ -80,6 +132,10 @@
                       type: Number,
                       value: 0,
                       observer: '_showAd'
+                  },
+                  opened: {
+                      type: Boolean,
+                      value: false
                   },
                   selectedToast: Object,
                   previousToast: Object
@@ -127,15 +183,34 @@
           }
 
           _previousToast() {
+              this.opened = false;
               window.navigator.vibrate(50);
               this.selectedToast = this.previousToast;
           }
 
+          _showNote(note) {
+              return note === "";
+          }
+
+          _computeNoNotes(openState, note) {
+              return !openState && note === "";
+          }
+
+          _computeSeeNotes(openState, note) {
+              return !openState && note !== "";
+          }
+
           _populateWindow() {
               this.counter += 1;
+              this.opened = false;
               window.navigator.vibrate(50);
               this.previousToast = this.selectedToast;
               this.selectedToast = this._getRandomToast();
+          }
+
+          _toggleNote() {
+              if (this.selectedToast.note === "") return;
+              this.opened = !this.opened;
           }
 
           _getRandomToast() {
