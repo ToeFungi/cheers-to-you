@@ -29,13 +29,13 @@
             }
         </style>
 
-        <div class="language-card" on-click="_open">
-            <div class="layout horizontal justified">
+        <div class="language-card">
+            <div class="layout horizontal justified" on-click="_toggle">
                 <div class="flex">
                     <h2>[[cardTitle]]</h2>
                 </div>
 
-                <div hidden$="[[!open]]" on-tap="_close">
+                <div hidden$="[[!open]]">
                     <paper-icon-button icon="arrow-drop-up"></paper-icon-button>
                 </div>
 
@@ -64,6 +64,10 @@
                         value: false
                     }
                 }
+            }
+
+            _toggle() {
+                this.open ? this._close() : this._open();
             }
 
             _close() {
