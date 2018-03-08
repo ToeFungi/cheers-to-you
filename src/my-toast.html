@@ -4,225 +4,169 @@
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
-<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="shared-styles.html">
 
+<link rel="import" href="../src/my-note-display.html">
+
 <dom-module id="my-toast">
-  <template>
-    <style include="shared-styles iron-flex">
-      :host {
-        display: block;
-      }
+    <template>
+        <style include="shared-styles iron-flex">
+            :host {
+                display: block;
+            }
 
-      h1 {
-        margin: 0 0 0.2em 0;
-      }
+            h1 {
+                margin: 0 0 0.2em 0;
+            }
 
-      h2 {
-        color: #212121;
-        font-size: 125%;
-        font-weight: 400;
-        margin: 0 0 0.2em 0;
-      }
+            h2 {
+                color: #212121;
+                font-size: 125%;
+                font-weight: 400;
+                margin: 0 0 0.2em 0;
+            }
 
-      p {
-        margin: 0;
-      }
+            p {
+                margin: 0;
+            }
 
-      .pronunciation {
-        font-style: italic;
-        margin-bottom: 0.5em;
-      }
+            .pronunciation {
+                font-style: italic;
+                margin-bottom: 0.5em;
+            }
 
-      .buttons {
-        color: #212121;
-        margin-top: 3em;
-      }
+            .buttons {
+                color: #212121;
+                margin-top: 3em;
+            }
 
-      .note-card {
-        margin: 0.5em 0;
-        font-style: italic;
-      }
+            paper-icon-button {
+                padding: 0;
+                max-width: 24px;
+                max-height: 24px;
+            }
+        </style>
 
-      .note-card > div {
-        color: #212121;
-      }
+        <div class="card">
+            <h1>[[selectedToast.language]]</h1>
 
-      iron-icon {
-        margin-left: 1em;
-      }
+            <p>[[selectedToast.toast]]</p>
+            <p class="pronunciation">
+                &nbsp;&nbsp;- [[selectedToast.pronunciation]]
+                <paper-icon-button on-click="_playTTS" icon="av:volume-up"></paper-icon-button>
+            </p>
+            <p>"[[selectedToast.translation]]"</p>
 
-      paper-icon-button {
-        padding: 0;
-        max-width: 24px;
-        max-height: 24px;
-      }
-    </style>
+            <my-note-display selected-toast="[[selectedToast]]"></my-note-display>
 
-    <div class="card">
-      <template is="dom-if" if="[[!toasts.length]]">
-        <div>
-          Preparing to drink!
+            <div class="layout horizontal buttons">
+                <div hidden$="[[_hidePreviousBtn(previousToast, selectedToast)]]" on-click="_previousToast">
+                    <paper-icon-button icon="arrow-back"></paper-icon-button>
+                    Back!
+                </div>
+
+                <div class="flex"></div>
+
+                <div on-click="_populateWindow">
+                    Next!
+                    <paper-icon-button icon="arrow-forward"></paper-icon-button>
+                </div>
+            </div>
         </div>
-      </template>
+    </template>
 
-      <template is="dom-if" if="[[toasts.length]]">
-        <h1>[[selectedToast.language]]</h1>
+    <script>
+        class MyToast extends Polymer.Element {
+            static get is() { return 'my-toast'; }
 
-        <p>[[selectedToast.toast]]</p>
-        <p class="pronunciation">
-          &nbsp;- [[selectedToast.pronunciation]]
-          <paper-icon-button on-click="_playTTS" icon="av:volume-up"></paper-icon-button>
-        </p>
-        <p>"[[selectedToast.translation]]"</p>
+            static get properties() {
+                return {
+                    toasts: {
+                        type: Array,
+                        value: [],
+                        observer: '_populateWindow'
+                    },
+                    counter: {
+                        type: Number,
+                        value: 0,
+                        observer: '_showAd'
+                    },
+                    selectedToast: Object,
+                    previousToast: Object
+                }
+            }
 
-        <div class="note-card" on-tap="_toggleNote">
-          <div hidden$="[[!_computeSeeNotes(opened, selectedToast.note)]]">
-            See notes
-            <iron-icon icon="arrow-drop-down"></iron-icon>
-          </div>
+            _showAd(counter) {
+                if (counter < 16) return;
 
-          <div hidden$="[[!_computeNoNotes(opened, selectedToast.note)]]">
-            No notes
-            <iron-icon icon="remove"></iron-icon>
-          </div>
+                this.counter = 1;
+                if (window.AdMob) {
+                    window.AdMob.prepareInterstitial({
+                        adId: window.admob.interstitial,
+                        autoShow: true
+                    });
+                }
+            }
 
-          <div hidden$="[[!opened]]">
-            Close notes
-            <iron-icon icon="arrow-drop-up"></iron-icon>
-          </div>
+            _hidePreviousBtn(previousToast, selectedToast) {
+                return previousToast === selectedToast || this.previousToast === undefined;
+            }
 
-          <iron-collapse opened="[[opened]]">
-            <p hidden$="[[_showNote(selectedToast.note)]]">[[selectedToast.note]]</p>
-          </iron-collapse>
-        </div>
+            _playTTS() {
+                if (!window.TTS)
+                    return this._messageDispatch({
+                        message: 'Your device doesn\'t like our speaker',
+                        duration: 5000
+                    });
 
-        <div class="layout horizontal buttons">
-          <div hidden$="[[_hidePreviousBtn(previousToast, selectedToast)]]" on-click="_previousToast">
-            <paper-icon-button icon="arrow-back"></paper-icon-button>
-            Back!
-          </div>
+                window.TTS
+                    .speak({
+                        text: this.selectedToast.ttsWord,
+                        locale: this.selectedToast.locale,
+                        rate: 1
+                    }, () => {
+                    }, (err) => {
+                        this._messageDispatch({
+                            message: 'Apologies, the speaker seems to be drunk!',
+                            duration: 5000
+                        });
+                    });
+            }
 
-          <div class="flex"></div>
+            _messageDispatch(evt) {
+                this.dispatchEvent(new CustomEvent('toast', {
+                    bubbles: true, composed: true, detail: {
+                        message: evt.message,
+                        duration: evt.duration
+                    }
+                }));
+            }
 
-          <div on-click="_populateWindow">
-            Next!
-            <paper-icon-button icon="arrow-forward"></paper-icon-button>
-          </div>
-        </div>
-      </template>
-    </div>
-  </template>
+            _previousToast() {
+                window.navigator.vibrate(50);
+                this.selectedToast = this.previousToast;
+            }
 
-  <script>
-      class MyToast extends Polymer.Element {
-          static get is() { return 'my-toast'; }
+            _populateWindow() {
+                this.counter += 1;
+                window.navigator.vibrate(50);
+                this.previousToast = this.selectedToast;
+                this.selectedToast = this._getRandomToast();
+            }
 
-          static get properties() {
-              return {
-                  toasts: {
-                      type: Array,
-                      value: [],
-                      observer: '_populateWindow'
-                  },
-                  counter: {
-                      type: Number,
-                      value: 0,
-                      observer: '_showAd'
-                  },
-                  opened: {
-                      type: Boolean,
-                      value: false
-                  },
-                  selectedToast: Object,
-                  previousToast: Object
-              }
-          }
+            _getRandomToast() {
+                let newToast = this.toasts[Math.floor(Math.random() * Math.floor(this.toasts.length))];
 
-          _showAd(counter) {
-              if (counter < 16) return;
+                while (newToast === this.selectedToast)
+                    newToast = this.toasts[Math.floor(Math.random() * Math.floor(this.toasts.length))];
 
-              this.counter = 1;
-              if (window.AdMob) {
-                  window.AdMob.prepareInterstitial({
-                      adId: window.admob.interstitial,
-                      autoShow: true
-                  });
-              }
-          }
+                return newToast;
+            }
+        }
 
-          _hidePreviousBtn(previousToast, selectedToast) {
-              return previousToast === selectedToast || this.previousToast === undefined;
-          }
-
-          _playTTS() {
-              if (!window.TTS)
-                  return this._messageDispatch({message: 'Your device doesn\'t like our speaker', duration: 5000});
-
-              window.TTS
-                  .speak({
-                      text: this.selectedToast.ttsWord,
-                      locale: this.selectedToast.locale,
-                      rate: 1
-                  }, () => {
-                  }, (err) => {
-                      this._messageDispatch({message: 'Apologies, the speaker seems to be drunk!', duration: 5000});
-                  });
-          }
-
-          _messageDispatch(evt) {
-              this.dispatchEvent(new CustomEvent('toast', {
-                  bubbles: true, composed: true, detail: {
-                      message: evt.message,
-                      duration: evt.duration
-                  }
-              }));
-          }
-
-          _previousToast() {
-              this.opened = false;
-              window.navigator.vibrate(50);
-              this.selectedToast = this.previousToast;
-          }
-
-          _showNote(note) {
-              return note === "";
-          }
-
-          _computeNoNotes(openState, note) {
-              return !openState && note === "";
-          }
-
-          _computeSeeNotes(openState, note) {
-              return !openState && note !== "";
-          }
-
-          _populateWindow() {
-              this.counter += 1;
-              this.opened = false;
-              window.navigator.vibrate(50);
-              this.previousToast = this.selectedToast;
-              this.selectedToast = this._getRandomToast();
-          }
-
-          _toggleNote() {
-              if (this.selectedToast.note === "") return;
-              this.opened = !this.opened;
-          }
-
-          _getRandomToast() {
-              let newToast = this.toasts[Math.floor(Math.random() * Math.floor(this.toasts.length))];
-
-              while (newToast === this.selectedToast)
-                  newToast = this.toasts[Math.floor(Math.random() * Math.floor(this.toasts.length))];
-
-              return newToast;
-          }
-      }
-
-      window.customElements.define(MyToast.is, MyToast);
-  </script>
+        window.customElements.define(MyToast.is, MyToast);
+    </script>
 </dom-module>
