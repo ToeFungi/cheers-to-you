@@ -29,8 +29,8 @@
             }
         </style>
 
-        <div class="language-card">
-            <div class="layout horizontal justified" on-click="_toggle">
+        <div class="language-card" id="card">
+            <div class="layout horizontal justified" id="title">
                 <div class="flex">
                     <h2>[[cardTitle]]</h2>
                 </div>
@@ -61,13 +61,27 @@
                     cardTitle: String,
                     open: {
                         type: Boolean,
-                        value: false
+                        value: false,
+                        observer: '_observeOpen'
                     }
                 }
             }
 
-            _toggle() {
-                this.open ? this._close() : this._open();
+            constructor() {
+                super();
+
+                this._openListener = this._open.bind(this);
+                this._closeListener = this._close.bind(this);
+            }
+
+            _observeOpen(open) {
+                if (!open) {
+                    this.$.title.removeEventListener('click', this._closeListener, false);
+                    this.$.card.addEventListener('click', this._openListener, false);
+                } else {
+                    this.$.card.removeEventListener('click', this._openListener, false);
+                    this.$.title.addEventListener('click', this._closeListener, false);
+                }
             }
 
             _close() {
@@ -79,8 +93,6 @@
             }
 
             _open() {
-                if (this.open) return;
-
                 this.dispatchEvent(new CustomEvent('card-open', {
                     bubbles: true, composed: true, detail: {
                         step: this
