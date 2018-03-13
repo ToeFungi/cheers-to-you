@@ -3,7 +3,7 @@
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 
-<dom-module id="my-note-display">
+<dom-module id="my-drink-display">
     <template>
         <style include="shared-styles">
             :host {
@@ -29,31 +29,31 @@
         </style>
 
         <div class="note-card" on-tap="_toggleNote">
-            <div hidden$="[[!_computeSeeNotes(opened, toast.note)]]">
-                See notes
+            <div hidden$="[[!_computeSeeNotes(opened, toast.nationalBeverage)]]">
+                See drinks
                 <iron-icon icon="arrow-drop-down"></iron-icon>
             </div>
 
-            <div hidden$="[[!_computeNoNotes(opened, toast.note)]]">
-                No notes
+            <div hidden$="[[!_computeNoNotes(opened, toast.nationalBeverage)]]">
+                No drinks
                 <iron-icon icon="remove"></iron-icon>
             </div>
 
             <div hidden$="[[!opened]]">
-                Close notes
+                Close drinks
                 <iron-icon icon="arrow-drop-up"></iron-icon>
             </div>
 
             <iron-collapse opened="[[opened]]">
-                <p hidden$="[[_showNote(toast.note)]]">[[toast.note]]</p>
+                <p hidden$="[[_showNote(toast.nationalBeverage)]]">[[toast.nationalBeverage.name]]</p>
             </iron-collapse>
         </div>
     </template>
 
     <script>
-        class MyNoteDisplay extends Polymer.Element {
+        class MyDrinkDisplay extends Polymer.Element {
             static get is() {
-                return 'my-note-display';
+                return 'my-drink-display';
             }
 
             static get properties() {
@@ -71,23 +71,23 @@
             }
 
             _toggleNote() {
-                if (this.toast.note === "") return;
+                if (this.toast.nationalBeverage === undefined) return;
                 this.opened = !this.opened;
             }
 
-            _showNote(note) {
-                return note === "";
+            _showNote(nationalBeverage) {
+                return nationalBeverage === undefined;
             }
 
-            _computeNoNotes(openState, note) {
-                return !openState && note === "";
+            _computeNoNotes(openState, nationalBeverage) {
+                return !openState && nationalBeverage === undefined;
             }
 
-            _computeSeeNotes(openState, note) {
-                return !openState && note !== "";
+            _computeSeeNotes(openState, nationalBeverage) {
+                return !openState && nationalBeverage !== undefined;
             }
         }
 
-        window.customElements.define(MyNoteDisplay.is, MyNoteDisplay);
+        window.customElements.define(MyDrinkDisplay.is, MyDrinkDisplay);
     </script>
 </dom-module>

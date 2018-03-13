@@ -5,6 +5,8 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="shared-styles.html">
 
+<link rel="import" href="../src/my-note-display.html">
+<link rel="import" href="../src/my-drink-display.html">
 <link rel="import" href="../src/my-text-to-speech.html">
 
 <dom-module id="my-language-display">
@@ -39,7 +41,8 @@
             <paper-icon-button on-click="_playTTS" icon="av:volume-up"></paper-icon-button>
         </p>
         <p>"[[toast.translation]]"</p>
-        <p>[[toast.note]]</p>
+        <my-note-display toast="[[toast]]"></my-note-display>
+        <my-drink-display toast="[[toast]]"></my-drink-display>
     </template>
 
     <script>
