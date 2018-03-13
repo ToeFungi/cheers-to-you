@@ -9,38 +9,26 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="shared-styles.html">
 
-<link rel="import" href="../src/my-note-display.html">
 <link rel="import" href="../src/my-text-to-speech.html">
+<link rel="import" href="../src/my-language-display.html">
 
 <dom-module id="my-toast">
     <template>
         <style include="shared-styles iron-flex">
             :host {
                 display: block;
-            }
-
-            h1 {
-                margin: 0 0 0.2em 0;
+                margin: 0 auto;
+                opacity: 0.9;
             }
 
             h2 {
-                color: #212121;
-                font-size: 125%;
-                font-weight: 400;
-                margin: 0 0 0.2em 0;
-            }
-
-            p {
                 margin: 0;
-            }
-
-            .pronunciation {
-                font-style: italic;
-                margin-bottom: 0.5em;
+                color: #000;
             }
 
             .buttons {
                 color: #212121;
+                font-size: 150%;
                 margin-top: 3em;
             }
 
@@ -54,16 +42,10 @@
         <my-text-to-speech id="tts" word="[[selectedToast.ttsWord]]" locale="[[selectedToast.locale]]"></my-text-to-speech>
 
         <div class="card">
-            <h1>[[selectedToast.language]]</h1>
 
-            <p>[[selectedToast.toast]]</p>
-            <p class="pronunciation">
-                &nbsp;&nbsp;- [[selectedToast.pronunciation]]
-                <paper-icon-button on-click="_playTTS" icon="av:volume-up"></paper-icon-button>
-            </p>
-            <p>"[[selectedToast.translation]]"</p>
+            <h2>[[selectedToast.language]]</h2>
 
-            <my-note-display toast="[[selectedToast]]"></my-note-display>
+            <my-language-display toast="[[selectedToast]]"></my-language-display>
 
             <div class="layout horizontal buttons">
                 <div hidden$="[[_hidePreviousBtn(previousToast, selectedToast)]]" on-click="_previousToast">
