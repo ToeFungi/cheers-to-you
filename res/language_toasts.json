@@ -1,106 +1,146 @@
 [
 	{
-        "id": 1,
+		"id": 1,
 		"language": "Afrikaans",
 		"toast": "Gesondheid",
 		"pronunciation": "Ge-sund-hate",
 		"translation": "Health",
 		"locale": "af-af",
 		"ttsWord": "Gesondheid",
+		"nationalBeverage": {
+			"name": "Amarula",
+			"description": "Amarula is a cream liqueur from South Africa. It is made with sugar, cream and the fruit of the African marula tree. It has an alcohol content of 17% by volume."
+		},
 		"note": ""
 	},
 	{
-        "id": 2,
+		"id": 2,
 		"language": "Chinese",
 		"toast": "干杯",
 		"pronunciation": "Gan bay",
 		"translation": "Cheers",
 		"locale": "zh-cn",
 		"ttsWord": "干杯",
+		"nationalBeverage": {
+			"name": "Baijiu",
+			"description": "Baijiu, also known as shaojiu , is a Chinese alcoholic beverage made from grain. Báijiǔ literally means 'white (clear) alcohol' or liquor, and is a strong distilled spirit, generally 52% alcohol by volume."
+		},
 		"note": ""
 	},
 	{
-        "id": 3,
+		"id": 3,
 		"language": "Czech",
 		"toast": "Na zdravi",
 		"pronunciation": "Naz-drah vi",
 		"translation": "To health",
 		"locale": "cs-cs",
 		"ttsWord": "Na zdravi",
+		"nationalBeverage": {
+			"name": "Becherovka",
+			"description": "Becherovka, formerly Karlsbader Becherbitter, is a herbal bitters, often drunk as a digestive aid. It often described as having a gingery or cinnamony flavor. Its alcohol content is 38%."
+		},
 		"note": "Can also mean 'bless you', after sneezing!"
 	},
 	{
-        "id": 4,
+		"id": 4,
 		"language": "Dutch",
 		"toast": "Proost",
 		"pronunciation": "Prohst",
 		"translation": "Cheers",
 		"locale": "nl-nl",
 		"ttsWord": "Proost",
+		"nationalBeverage": {
+			"name": "Jenever/Genever/Genièvre",
+			"description": "Jenever, also known as genièvre, genever, peket, or in the English-speaking world as Dutch gin or Hollands (archaic: Holland gin or Geneva gin), is the juniper-flavored national and traditional liquor of the Netherlands and Belgium, from which gin evolved. Traditional jenever is still very popular in the Netherlands, Belgium and nearby French and German regions. The European Union regulations specify that only liquor made in these two countries, two northern French departments and two German federal states can use the name jenever/genever/genièvre."
+		},
 		"note": ""
 	},
 	{
-        "id": 5,
+		"id": 5,
 		"language": "French",
 		"toast": "Santé",
 		"pronunciation": "Sahn-tay",
 		"translation": "Cheers",
 		"locale": "fr-fr",
 		"ttsWord": "Santé",
+		"nationalBeverage": {
+			"name": "Brandies",
+			"description": "Calvados is an apple brandy from the Normandy region in France. Armagnac is a distinctive kind of brandy produced in the Armagnac region in Gascony, southwest France. It is distilled from wine usually made from a blend of grapes including Baco 22A, Colombard, Folle blanche and Ugni blanc. The resulting spirit is then aged in oak barrels before release. Cognac  must be twice distilled and aged at least two years in French oak barrels from Limousin or Tronçais. Cognac matures in the same way as whiskies and wine barrel age, and most cognacs spend considerably longer 'on the wood' than the minimum legal requirement."
+		},
 		"note": ""
 	},
 	{
-        "id": 6,
+		"id": 6,
 		"language": "French",
 		"toast": "À votre santé",
 		"pronunciation": "Ah la vo-tre sahn-tay",
 		"translation": "To your health",
 		"locale": "fr-fr",
 		"ttsWord": "À votre santé",
+		"nationalBeverage": {
+			"name": "Brandies",
+			"description": "Calvados is an apple brandy from the Normandy region in France. Armagnac is a distinctive kind of brandy produced in the Armagnac region in Gascony, southwest France. It is distilled from wine usually made from a blend of grapes including Baco 22A, Colombard, Folle blanche and Ugni blanc. The resulting spirit is then aged in oak barrels before release. Cognac  must be twice distilled and aged at least two years in French oak barrels from Limousin or Tronçais. Cognac matures in the same way as whiskies and wine barrel age, and most cognacs spend considerably longer 'on the wood' than the minimum legal requirement."
+		},
 		"note": ""
 	},
 	{
-        "id": 7,
+		"id": 7,
 		"language": "German",
 		"toast": "Prost",
 		"pronunciation": "Prohst",
 		"translation": "Cheers",
 		"locale": "de-de",
 		"ttsWord": "Prost",
+		"nationalBeverage": {
+			"name": "Schnapps",
+			"description": "Schnapps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and 'flavored liqueurs' made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits."
+		},
 		"note": "A very informal way of saying 'bless you' after someone sneezes. Be careful though as some might find this offensive!"
 	},
 	{
-        "id": 8,
+		"id": 8,
 		"language": "German",
 		"toast": "Zum wohl",
 		"pronunciation": "Tsum vohl",
 		"translation": "To your health",
 		"locale": "de-de",
 		"ttsWord": "Zum wohl",
+		"nationalBeverage": {
+			"name": "Schnapps",
+			"description": "Schnapps is a type of alcoholic beverage that may take several forms, including distilled fruit brandies, herbal liqueurs, infusions, and 'flavored liqueurs' made by adding fruit syrups, spices, or artificial flavorings to neutral grain spirits."
+		},
 		"note": "This is a more formal toast. Use this at your next business lunch!"
 	},
 	{
-        "id": 9,
+		"id": 9,
 		"language": "Greek",
 		"toast": "υγεία",
-		"pronunciation": "Al-fa",
+		"pronunciation": "al-fa",
 		"translation": "Health",
 		"locale": "el-el",
 		"ttsWord": "υγεία",
+		"nationalBeverage": {
+			"name": "Ouzo",
+			"description": "Ouzo is a dry anise-flavoured aperitif that is widely consumed in Greece, Cyprus and Lebanon. Its taste is similar to other anise liquors like pastis and sambuca."
+		},
 		"note": ""
 	},
 	{
-        "id": 10,
+		"id": 10,
 		"language": "Irish Gaelic",
 		"toast": "Sláinte",
 		"pronunciation": "Slawn-cha",
 		"translation": "Health",
 		"locale": "gd-ie",
 		"ttsWord": "Sláinte",
+		"nationalBeverage": {
+			"name": "Irish whiskey",
+			"description": "Ouzo is a dry anise-flavoured aperitif that is widely consumed in Greece, Cyprus and Lebanon. Its taste is similar to other anise liquors like pastis and sambuca."
+		},
 		"note": ""
 	},
 	{
-        "id": 11,
+		"id": 11,
 		"language": "Italian",
 		"toast": "Salute",
 		"pronunciation": "Sa-lu-tay",
@@ -110,7 +150,7 @@
 		"note": ""
 	},
 	{
-        "id": 12,
+		"id": 12,
 		"language": "Italian",
 		"toast": "Cin cin",
 		"pronunciation": "Chin chin",
@@ -120,7 +160,7 @@
 		"note": ""
 	},
 	{
-        "id": 13,
+		"id": 13,
 		"language": "Japanese",
 		"toast": "乾杯",
 		"pronunciation": "Kam-pie",
@@ -130,7 +170,7 @@
 		"note": "The word Kenpai is used during funerals and memorial services to toast for the deceased with respect. If you ever attend a Japanese funeral service, just raise the glass and say Kenpai without clinking glasses."
 	},
 	{
-        "id": 14,
+		"id": 14,
 		"language": "Korean",
 		"toast": "건배",
 		"pronunciation": "Gun bae",
@@ -140,7 +180,7 @@
 		"note": ""
 	},
 	{
-        "id": 15,
+		"id": 15,
 		"language": "Lithuanian",
 		"toast": "į sveikatą",
 		"pronunciation": "Ee sweh-kata",
@@ -150,7 +190,7 @@
 		"note": ""
 	},
 	{
-        "id": 16,
+		"id": 16,
 		"language": "Moldovan",
 		"toast": "Noroc",
 		"pronunciation": "No-rock",
@@ -160,7 +200,7 @@
 		"note": ""
 	},
 	{
-        "id": 17,
+		"id": 17,
 		"language": "Polish",
 		"toast": "Na zdrowie",
 		"pronunciation": "Naz-droh-vee-ay",
@@ -170,7 +210,7 @@
 		"note": ""
 	},
 	{
-        "id": 18,
+		"id": 18,
 		"language": "Portuguese",
 		"toast": "Saúde",
 		"pronunciation": "Saw-oo-de",
@@ -180,7 +220,7 @@
 		"note": ""
 	},
 	{
-        "id": 19,
+		"id": 19,
 		"language": "Russian",
 		"toast": "Будем здоровы",
 		"pronunciation": "Budem zdorovi",
@@ -190,7 +230,7 @@
 		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
 	},
 	{
-        "id": 20,
+		"id": 20,
 		"language": "Russian",
 		"toast": "На здоровье",
 		"pronunciation": "Na zdorovie",
@@ -200,7 +240,7 @@
 		"note": "It is interesting to note that most Russians rarely use this expression, and the above is used more by foreigners. Russians will change their wishes based on the person and celebration."
 	},
 	{
-        "id": 21,
+		"id": 21,
 		"language": "Spanish",
 		"toast": "Salud",
 		"pronunciation": "Sah-lud",
@@ -210,7 +250,7 @@
 		"note": ""
 	},
 	{
-        "id": 22,
+		"id": 22,
 		"language": "Swedish",
 		"toast": "Skål",
 		"pronunciation": "Skawl",
@@ -220,7 +260,7 @@
 		"note": "Don’t forget to look everyone in the eye!"
 	},
 	{
-        "id": 23,
+		"id": 23,
 		"language": "Welsh",
 		"toast": "Iechyd da",
 		"pronunciation": "Yeh-chid dah",
@@ -230,7 +270,7 @@
 		"note": ""
 	},
 	{
-        "id": 24,
+		"id": 24,
 		"language": "Yiddish",
 		"toast": "Sei gesund",
 		"pronunciation": "Say geh-sund",
@@ -240,7 +280,7 @@
 		"note": ""
 	},
 	{
-        "id": 25,
+		"id": 25,
 		"language": "Albanian",
 		"toast": "Gëzuar",
 		"pronunciation": "Geh-zoo-ah",
@@ -250,7 +290,7 @@
 		"note": ""
 	},
 	{
-        "id": 26,
+		"id": 26,
 		"language": "Arabic",
 		"toast": "فى صحتك",
 		"pronunciation": "Fe sahetek",
@@ -260,7 +300,7 @@
 		"note": ""
 	},
 	{
-        "id": 27,
+		"id": 27,
 		"language": "Azerbaijani",
 		"toast": "Nuş olsun",
 		"pronunciation": "Nush ohlsun",
@@ -270,7 +310,7 @@
 		"note": ""
 	},
 	{
-        "id": 28,
+		"id": 28,
 		"language": "Croatian",
 		"toast": "Živjeli",
 		"pronunciation": "Zhee-vi-lee",
@@ -280,7 +320,7 @@
 		"note": "The grammatically correct forms are, to a single man 'živio', to a single woman 'živjela', to a group of men 'živjeli', to a group of women 'živjele'"
 	},
 	{
-        "id": 29,
+		"id": 29,
 		"language": "Bulgarian",
 		"toast": "Наздраве",
 		"pronunciation": "Naz-dra-vey",
@@ -290,7 +330,7 @@
 		"note": ""
 	},
 	{
-        "id": 30,
+		"id": 30,
 		"language": "Catalan",
 		"toast": "Salut",
 		"pronunciation": "Sah-lut",
