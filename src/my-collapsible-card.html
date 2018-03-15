@@ -6,7 +6,7 @@
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
-<dom-module id="my-language-card">
+<dom-module id="my-collapsible-card">
     <template>
         <style include="shared-styles iron-flex">
             :host {
@@ -31,17 +31,8 @@
 
         <div class="language-card">
             <div class="layout horizontal justified" on-click="_toggle">
-                <div class="flex">
-                    <h2>[[cardTitle]]</h2>
-                </div>
-
-                <div hidden$="[[!open]]">
-                    <paper-icon-button icon="arrow-drop-up"></paper-icon-button>
-                </div>
-
-                <div hidden$="[[open]]">
-                    <paper-icon-button icon="arrow-drop-down"></paper-icon-button>
-                </div>
+                <h2 class="flex">[[cardTitle]]</h2>
+                <paper-icon-button icon="[[_computeIsOpen(open)]]"></paper-icon-button>
             </div>
 
             <iron-collapse opened="[[open]]">
@@ -51,9 +42,9 @@
     </template>
 
     <script>
-        class MyLanguageCard extends Polymer.Element {
+        class MyCollapsibleCard extends Polymer.Element {
             static get is() {
-                return 'my-language-card';
+                return 'my-collapsible-card';
             }
 
             static get properties() {
@@ -66,22 +57,12 @@
                 }
             }
 
+            _computeIsOpen(open) {
+                return open ? 'arrow-drop-up' : 'arrow-drop-down';
+            }
+
             _toggle() {
-                this.open ? this._close() : this._open();
-            }
-
-            _close() {
-                this.dispatchEvent(new CustomEvent('card-close', {
-                    bubbles: true, composed: true, detail: {
-                        step: this
-                    }
-                }));
-            }
-
-            _open() {
-                if (this.open) return;
-
-                this.dispatchEvent(new CustomEvent('card-open', {
+                this.dispatchEvent(new CustomEvent(`card-toggle`, {
                     bubbles: true, composed: true, detail: {
                         step: this
                     }
@@ -89,6 +70,6 @@
             }
         }
 
-        window.customElements.define(MyLanguageCard.is, MyLanguageCard);
+        window.customElements.define(MyCollapsibleCard.is, MyCollapsibleCard);
     </script>
 </dom-module>

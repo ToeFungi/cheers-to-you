@@ -1,52 +1,29 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 
 <dom-module id="my-drink-display">
     <template>
         <style include="shared-styles">
             :host {
                 display: block;
+                padding: 0 1em;
+                font-size: 135%;
             }
 
-            .note-card {
-                margin: 0.5em 0;
-                font-style: italic;
-            }
-
-            .note-card > div {
-                color: #212121;
-            }
-
-            iron-icon {
-                margin-left: 1em;
-            }
-
-            p {
-                margin: 0;
+            .error-message,
+            .beverage-description {
+                color: #757575;
+                font-size: 90%;
+                line-height: 1.2em;
             }
         </style>
 
-        <div class="note-card" on-tap="_toggleNote">
-            <div hidden$="[[!_computeSeeNotes(opened, toast.nationalBeverage)]]">
-                See drinks
-                <iron-icon icon="arrow-drop-down"></iron-icon>
-            </div>
+        <div hidden$="[[!_computeShowNote(toast.nationalBeverage, toast)]]">
+            <p>[[toast.nationalBeverage.name]]</p>
+            <p class="beverage-description">[[toast.nationalBeverage.description]]</p>
+        </div>
 
-            <div hidden$="[[!_computeNoNotes(opened, toast.nationalBeverage)]]">
-                No drinks
-                <iron-icon icon="remove"></iron-icon>
-            </div>
-
-            <div hidden$="[[!opened]]">
-                Close drinks
-                <iron-icon icon="arrow-drop-up"></iron-icon>
-            </div>
-
-            <iron-collapse opened="[[opened]]">
-                <p hidden$="[[_showNote(toast.nationalBeverage)]]">[[toast.nationalBeverage.name]]</p>
-            </iron-collapse>
+        <div hidden$="[[_computeShowNote(toast.nationalBeverage, toast)]]">
+            <p class="error-message">There are no beverages to show you :(</p>
         </div>
     </template>
 
@@ -58,33 +35,12 @@
 
             static get properties() {
                 return {
-                    toast: {
-                        type: Object,
-                        observer: '_closeNote'
-                    },
-                    opened: Boolean
+                    toast: Object
                 }
             }
 
-            _closeNote() {
-                this.opened = false;
-            }
-
-            _toggleNote() {
-                if (this.toast.nationalBeverage === undefined) return;
-                this.opened = !this.opened;
-            }
-
-            _showNote(nationalBeverage) {
-                return nationalBeverage === undefined;
-            }
-
-            _computeNoNotes(openState, nationalBeverage) {
-                return !openState && nationalBeverage === undefined;
-            }
-
-            _computeSeeNotes(openState, nationalBeverage) {
-                return !openState && nationalBeverage !== undefined;
+            _computeShowNote(nationalBeverage, toast) {
+                return toast && nationalBeverage && nationalBeverage.name;
             }
         }
 
