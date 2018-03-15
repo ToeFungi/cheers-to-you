@@ -49,13 +49,13 @@
             }
 
             _closeCard({detail: {step}}) {
-                if (step.open) return step.open = false;
+                return step.open = false;
             }
 
             _openCard({detail: {step}}) {
                 if (step.open) return;
 
-                Array.from(step.parentNode.children).forEach(function (siblingStep) {
+                Array.from(step.parentNode.children).forEach((siblingStep) => {
                     siblingStep.open = false
                 });
 

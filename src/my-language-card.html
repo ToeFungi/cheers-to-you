@@ -76,12 +76,12 @@
                     this.$.card.addEventListener('click', this._openListener, true);
                 }
                 else {
-                    this.$.texter.addEventListener('click', this._closeListener, true);
                     this.$.card.removeEventListener('click', this._openListener, true);
+                    this.$.texter.addEventListener('click', this._closeListener, true);
                 }
             }
 
-            _close(e) {
+            _close() {
                 console.log('close');
                 this.dispatchEvent(new CustomEvent('card-close', {
                     bubbles: true, composed: true, detail: {
@@ -90,7 +90,7 @@
                 }));
             }
 
-            _open(e) {
+            _open() {
                 console.log('open');
                 this.dispatchEvent(new CustomEvent('card-open', {
                     bubbles: true, composed: true, detail: {
