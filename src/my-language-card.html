@@ -30,18 +30,10 @@
         </style>
 
         <div class="language-card" id="card">
-            <div class="layout horizontal justified" id="title">
-                <div class="flex">
-                    <h2>[[cardTitle]]</h2>
-                </div>
+            <div class="layout horizontal justified" id="texter">
+                <h2 class="flex">[[cardTitle]]</h2>
 
-                <div hidden$="[[!open]]">
-                    <paper-icon-button icon="arrow-drop-up"></paper-icon-button>
-                </div>
-
-                <div hidden$="[[open]]">
-                    <paper-icon-button icon="arrow-drop-down"></paper-icon-button>
-                </div>
+                <paper-icon-button icon="[[_computeIsOpen(open)]]"></paper-icon-button>
             </div>
 
             <iron-collapse opened="[[open]]">
@@ -74,17 +66,23 @@
                 this._closeListener = this._close.bind(this);
             }
 
+            _computeIsOpen(open) {
+                return open ? 'arrow-drop-up' : 'arrow-drop-down';
+            }
+
             _observeOpen(open) {
                 if (!open) {
-                    this.$.title.removeEventListener('click', this._closeListener, false);
-                    this.$.card.addEventListener('click', this._openListener, false);
-                } else {
-                    this.$.card.removeEventListener('click', this._openListener, false);
-                    this.$.title.addEventListener('click', this._closeListener, false);
+                    this.$.texter.removeEventListener('click', this._closeListener, true);
+                    this.$.card.addEventListener('click', this._openListener, true);
+                }
+                else {
+                    this.$.texter.addEventListener('click', this._closeListener, true);
+                    this.$.card.removeEventListener('click', this._openListener, true);
                 }
             }
 
-            _close() {
+            _close(e) {
+                console.log('close');
                 this.dispatchEvent(new CustomEvent('card-close', {
                     bubbles: true, composed: true, detail: {
                         step: this
@@ -92,7 +90,8 @@
                 }));
             }
 
-            _open() {
+            _open(e) {
+                console.log('open');
                 this.dispatchEvent(new CustomEvent('card-open', {
                     bubbles: true, composed: true, detail: {
                         step: this
