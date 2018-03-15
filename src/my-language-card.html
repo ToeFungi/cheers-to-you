@@ -71,18 +71,23 @@
             }
 
             _observeOpen(open) {
+                console.log('isOpen = ', open);
                 if (!open) {
                     this.$.texter.removeEventListener('click', this._closeListener, true);
+                    console.log('remove _closeListener');
                     this.$.card.addEventListener('click', this._openListener, true);
+                    console.log('add _openListener');
                 }
                 else {
                     this.$.card.removeEventListener('click', this._openListener, true);
+                    console.log('remove _openListener');
                     this.$.texter.addEventListener('click', this._closeListener, true);
+                    console.log('add _closeListener');
                 }
+                console.log('==============');
             }
 
             _close() {
-                console.log('close');
                 this.dispatchEvent(new CustomEvent('card-close', {
                     bubbles: true, composed: true, detail: {
                         step: this
@@ -91,7 +96,6 @@
             }
 
             _open() {
-                console.log('open');
                 this.dispatchEvent(new CustomEvent('card-open', {
                     bubbles: true, composed: true, detail: {
                         step: this
