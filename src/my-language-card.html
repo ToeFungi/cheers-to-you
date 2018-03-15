@@ -29,8 +29,8 @@
             }
         </style>
 
-        <div class="language-card" id="card">
-            <div class="layout horizontal justified" id="texter">
+        <div class="language-card" on-tap="_toggleOpen">
+            <div class="layout horizontal justified">
                 <h2 class="flex">[[cardTitle]]</h2>
 
                 <paper-icon-button icon="[[_computeIsOpen(open)]]"></paper-icon-button>
@@ -54,49 +54,18 @@
                     open: {
                         type: Boolean,
                         value: false,
-                        observer: '_observeOpen'
                     }
                 }
-            }
-
-            constructor() {
-                super();
-
-                this._openListener = this._open.bind(this);
-                this._closeListener = this._close.bind(this);
             }
 
             _computeIsOpen(open) {
                 return open ? 'arrow-drop-up' : 'arrow-drop-down';
             }
 
-            _observeOpen(open) {
-                console.log('isOpen = ', open);
-                if (!open) {
-                    this.$.texter.removeEventListener('click', this._closeListener, true);
-                    console.log('remove _closeListener');
-                    this.$.card.addEventListener('click', this._openListener, true);
-                    console.log('add _openListener');
-                }
-                else {
-                    this.$.card.removeEventListener('click', this._openListener, true);
-                    console.log('remove _openListener');
-                    this.$.texter.addEventListener('click', this._closeListener, true);
-                    console.log('add _closeListener');
-                }
-                console.log('==============');
-            }
+            _toggleOpen() {
+                let action = this.open ? 'close' : 'open';
 
-            _close() {
-                this.dispatchEvent(new CustomEvent('card-close', {
-                    bubbles: true, composed: true, detail: {
-                        step: this
-                    }
-                }));
-            }
-
-            _open() {
-                this.dispatchEvent(new CustomEvent('card-open', {
+                this.dispatchEvent(new CustomEvent('card-' + action, {
                     bubbles: true, composed: true, detail: {
                         step: this
                     }
