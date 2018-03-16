@@ -194,9 +194,7 @@
                   xhr.send(null);
               })
                   .then((resp) => resp.json())
-                  .then((data) => {
-                      this.toasts = data;
-                  })
+                  .then((data) => this.toasts = data)
                   .catch(() => this._makeToast({message: 'We couldn\'t find the drinks menu.', duration: 10000}));
           }
 
