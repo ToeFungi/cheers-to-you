@@ -16,6 +16,7 @@
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 
+<link rel="lazy-import" href="my-about.html">
 <link rel="lazy-import" href="my-toast.html">
 <link rel="lazy-import" href="my-language-selector.html">
 
@@ -146,6 +147,7 @@
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="toast" href="[[rootPath]]toast">Random Toasts</a>
           <a name="language-selector" href="[[rootPath]]language-selector">Languages</a>
+          <a name="about" href="[[rootPath]]about">About</a>
         </iron-selector>
 
         <div class="version">
@@ -168,6 +170,7 @@
                 selected-attribute="active"
                 fallback-selection="view404"
                 role="main">
+          <my-about name="about"></my-about>
           <my-toast name="toast" toasts="[[toasts]]"></my-toast>
           <my-language-selector name="language-selector" toasts="[[toasts]]"></my-language-selector>
         </iron-pages>

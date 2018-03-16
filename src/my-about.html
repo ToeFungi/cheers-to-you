@@ -1,0 +1,103 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../src/my-collapsible-card.html">
+
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-about">
+    <template>
+        <style include="shared-styles iron-flex">
+            :host {
+                display: block;
+                margin: 0 auto;
+                opacity: 0.9;
+            }
+
+            p {
+                font-size: 120%;
+                text-align: justify;
+            }
+
+            .language-dropdown {
+                background-color: #FFF;
+            }
+
+            .instructions {
+                text-align: center;
+            }
+
+            .instructions > img {
+                width: 100px;
+            }
+        </style>
+
+        <div class="language-dropdown layout vertical">
+            <my-collapsible-card card-title="About">
+                <div>
+                    <p>
+                        The application started out in life as two drunkards in the only bar around for hundreds of miles in a
+                        small town in the middle of nowhere wanting to toast in foreign languages; because what else was there
+                        to do in the middle of nowhere?
+                    </p>
+
+                    <p>
+                        After scrolling furiously through slowly loading web pages, we finally had some toasts! It was a time
+                        consuming process though. So it was decided that an application would be created! So that drunkards all
+                        over the world could toast as they please! Without fret of slow internet or lost cell signals!
+                    </p>
+
+                    <p>
+                        The application is totally offline. There is no connection required after installation!
+                    </p>
+                </div>
+            </my-collapsible-card>
+
+            <my-collapsible-card card-title="Instructions">
+                <div>
+                    <p>
+                        Here is one basic thing you should probably know...
+                    </p>
+                    <p class="instructions">
+                        <img src="images/instruction.svg">
+                    </p>
+                    <p>
+                        To scroll between Random Languages, simply use your finger to swipe!
+                    </p>
+                </div>
+            </my-collapsible-card>
+        </div>
+    </template>
+
+    <script>
+        class MyAbout extends Polymer.Element {
+            static get is() {
+                return 'my-about';
+            }
+
+            static get properties() {
+                return {
+                }
+            }
+
+            constructor() {
+                super();
+
+                this.addEventListener('card-toggle', this._toggleCard);
+            }
+
+            _toggleCard({detail: {step}}) {
+                if (step.open) return step.open = false;
+
+                Array.from(step.parentNode.children).forEach(function (siblingStep) {
+                    siblingStep.open = false
+                });
+
+                step.open = true;
+            }
+        }
+
+        window.customElements.define(MyAbout.is, MyAbout);
+    </script>
+</dom-module>
