@@ -195,14 +195,7 @@
               })
                   .then((resp) => resp.json())
                   .then((data) => {
-                      this.toasts = data.sort((a, b) => {
-                          let langA = a.language.toUpperCase();
-                          let langB = b.language.toUpperCase();
-
-                          if (langA < langB) return -1;
-                          if (langA > langB) return 1;
-                          return 0;
-                      });
+                      this.toasts = data;
                   })
                   .catch(() => this._makeToast({message: 'We couldn\'t find the drinks menu.', duration: 10000}));
           }

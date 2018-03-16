@@ -23,7 +23,7 @@
         </style>
 
         <div class="language-dropdown layout vertical">
-            <template is="dom-repeat" items="[[toasts]]">
+            <template is="dom-repeat" items="[[sortedToasts]]">
                 <my-collapsible-card card-title="[[item.language]]">
                     <my-language-display toast="[[item]]"></my-language-display>
                 </my-collapsible-card>
@@ -37,7 +37,15 @@
 
             static get properties() {
                 return {
-                    toasts: Array
+                    toasts: {
+                        type: Array,
+                        value: [],
+                        observer: '_sortToasts'
+                    },
+                    sortedToasts: {
+                        type: Array,
+                        value: []
+                    }
                 }
             }
 
@@ -45,6 +53,17 @@
                 super();
 
                 this.addEventListener('card-toggle', this._toggleCard);
+            }
+
+            _sortToasts(toasts) {
+                this.sortedToasts = toasts.sort((a, b) => {
+                    let langA = a.language.toUpperCase();
+                    let langB = b.language.toUpperCase();
+
+                    if (langA < langB) return -1;
+                    if (langA > langB) return 1;
+                    return 0;
+                });
             }
 
             _toggleCard({detail: {step}}) {
