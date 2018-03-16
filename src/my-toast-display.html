@@ -1,0 +1,57 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../src/my-note-display.html">
+<link rel="import" href="../src/my-drink-display.html">
+<link rel="import" href="../src/my-collapsible-card.html">
+<link rel="import" href="../src/my-language-display.html">
+
+<dom-module id="my-toast-display">
+    <template>
+        <style include="shared-styles iron-flex">
+            :host {
+                display: block;
+            }
+
+            my-collapsible-card {
+                background-color: #fff;
+            }
+        </style>
+
+        <div class="language-dropdown layout vertical">
+            <my-collapsible-card card-title="[[toast.language]]" open="[[!_computeIsOpen(selectedIndex)]]">
+                <my-language-display toast="[[toast]]"></my-language-display>
+            </my-collapsible-card>
+
+            <my-collapsible-card card-title="Notes" open="[[_computeIsOpen(selectedIndex)]]">
+                <my-note-display toast="[[toast]]"></my-note-display>
+            </my-collapsible-card>
+
+            <my-collapsible-card card-title="Drinks" open="[[_computeIsOpen(selectedIndex)]]">
+                <my-drink-display toast="[[toast]]"></my-drink-display>
+            </my-collapsible-card>
+        </div>
+    </template>
+
+    <script>
+        class MyToastDisplay extends Polymer.Element {
+            static get is() {
+                return 'my-toast-display';
+            }
+
+            static get properties() {
+                return {
+                    toast: Object,
+                    selectedIndex: Number
+                }
+            }
+
+            _computeIsOpen() {
+                return false;
+            }
+        }
+
+        window.customElements.define(MyToastDisplay.is, MyToastDisplay);
+    </script>
+</dom-module>

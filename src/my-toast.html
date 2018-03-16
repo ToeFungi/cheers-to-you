@@ -6,11 +6,12 @@
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-swipeable-pages/iron-swipeable-pages.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="shared-styles.html">
 
 <link rel="import" href="../src/my-text-to-speech.html">
-<link rel="import" href="../src/my-language-display.html">
+<link rel="import" href="../src/my-toast-display.html">
 
 <dom-module id="my-toast">
     <template>
@@ -20,47 +21,15 @@
                 margin: 0 auto;
                 opacity: 0.9;
             }
-
-            h2 {
-                margin: 0;
-                color: #000;
-            }
-
-            .buttons {
-                color: #212121;
-                font-size: 150%;
-                margin-top: 3em;
-            }
-
-            paper-icon-button {
-                padding: 0;
-                max-width: 24px;
-                max-height: 24px;
-            }
         </style>
 
         <my-text-to-speech id="tts" word="[[selectedToast.ttsWord]]" locale="[[selectedToast.locale]]"></my-text-to-speech>
 
-        <div class="card">
-
-            <h2>[[selectedToast.language]]</h2>
-
-            <my-language-display toast="[[selectedToast]]"></my-language-display>
-
-            <div class="layout horizontal buttons">
-                <div hidden$="[[_hidePreviousBtn(previousToast, selectedToast)]]" on-click="_previousToast">
-                    <paper-icon-button icon="arrow-back"></paper-icon-button>
-                    Back!
-                </div>
-
-                <div class="flex"></div>
-
-                <div on-click="_populateWindow">
-                    Next!
-                    <paper-icon-button icon="arrow-forward"></paper-icon-button>
-                </div>
-            </div>
-        </div>
+        <iron-swipeable-pages selected="{{selectedIndex}}">
+            <template is="dom-repeat" items="[[shuffledToasts]]">
+                <my-toast-display toast$="[[item]]" selected-index="[[selectedIndex]]"></my-toast-display>
+            </template>
+        </iron-swipeable-pages>
     </template>
 
     <script>
@@ -72,23 +41,45 @@
                     toasts: {
                         type: Array,
                         value: [],
-                        observer: '_populateWindow'
+                        observer: '_init'
+                    },
+                    shuffledToasts: {
+                        type: Array,
+                        value: []
                     },
                     counter: {
                         type: Number,
                         value: 0,
                         observer: '_showAd'
                     },
-                    selectedToast: Object,
-                    previousToast: Object
+                    selectedIndex: {
+                        type: Number,
+                        value: 0,
+                        observer: '_indexChanged'
+                    }
                 }
             }
 
             constructor() {
                 super();
 
+                this.addEventListener('card-toggle', this._toggleCard);
                 this.addEventListener('tts-missing', () => this._messageDispatch({message: 'Your device doesn\'t like our speaker', duration: 5000}));
                 this.addEventListener('tts-failure', () => this._messageDispatch({message: 'Apologies, the speaker seems to be drunk!', duration: 5000}));
+            }
+
+            _init(evt) {
+                this.shuffledToasts = this._shuffle(evt);
+            }
+
+            _toggleCard({detail: {step}}) {
+                if (step.open) return step.open = false;
+
+                Array.from(step.parentNode.children).forEach(function (siblingStep) {
+                    siblingStep.open = false
+                });
+
+                step.open = true;
             }
 
             _playTTS() {
@@ -107,8 +98,9 @@
                 }
             }
 
-            _hidePreviousBtn(previousToast, selectedToast) {
-                return previousToast === selectedToast || this.previousToast === undefined;
+            _indexChanged() {
+                this.counter++;
+                window.navigator.vibrate(50);
             }
 
             _messageDispatch(evt) {
@@ -120,25 +112,21 @@
                 }));
             }
 
-            _previousToast() {
-                window.navigator.vibrate(50);
-                this.selectedToast = this.previousToast;
-            }
+            _shuffle(array) {
+                let index = array.length,
+                    tempVal,
+                    nextIndex;
 
-            _populateWindow() {
-                this.counter += 1;
-                window.navigator.vibrate(50);
-                this.previousToast = this.selectedToast;
-                this.selectedToast = this._getRandomToast();
-            }
+                while (0 !== index) {
+                    nextIndex = Math.floor(Math.random() * index);
+                    index -= 1;
 
-            _getRandomToast() {
-                let newToast = this.toasts[Math.floor(Math.random() * Math.floor(this.toasts.length))];
+                    tempVal = array[index];
+                    array[index] = array[nextIndex];
+                    array[nextIndex] = tempVal;
+                }
 
-                while (newToast === this.selectedToast)
-                    newToast = this.toasts[Math.floor(Math.random() * Math.floor(this.toasts.length))];
-
-                return newToast;
+                return array;
             }
         }
 

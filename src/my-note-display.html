@@ -1,52 +1,28 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 
 <dom-module id="my-note-display">
     <template>
         <style include="shared-styles">
             :host {
                 display: block;
+                padding: 0 1em;
+                font-size: 135%;
             }
 
-            .note-card {
-                margin: 0.5em 0;
-                font-style: italic;
-            }
-
-            .note-card > div {
-                color: #212121;
-            }
-
-            iron-icon {
-                margin-left: 1em;
-            }
-
-            p {
-                margin: 0;
+            .error-message,
+            .notes {
+                color: #757575;
+                font-size: 90%;
+                line-height: 1.2em;
             }
         </style>
 
-        <div class="note-card" on-tap="_toggleNote">
-            <div hidden$="[[!_computeSeeNotes(opened, toast.note)]]">
-                See notes
-                <iron-icon icon="arrow-drop-down"></iron-icon>
-            </div>
+        <div hidden$="[[!_computeShowNote(toast.note, toast)]]">
+            <p class="notes">[[toast.note]]</p>
+        </div>
 
-            <div hidden$="[[!_computeNoNotes(opened, toast.note)]]">
-                No notes
-                <iron-icon icon="remove"></iron-icon>
-            </div>
-
-            <div hidden$="[[!opened]]">
-                Close notes
-                <iron-icon icon="arrow-drop-up"></iron-icon>
-            </div>
-
-            <iron-collapse opened="[[opened]]">
-                <p hidden$="[[_showNote(toast.note)]]">[[toast.note]]</p>
-            </iron-collapse>
+        <div hidden$="[[_computeShowNote(toast.note, toast)]]">
+            <p class="error-message">There are no notes available :(</p>
         </div>
     </template>
 
@@ -58,33 +34,12 @@
 
             static get properties() {
                 return {
-                    toast: {
-                        type: Object,
-                        observer: '_closeNote'
-                    },
-                    opened: Boolean
+                    toast: Object
                 }
             }
 
-            _closeNote() {
-                this.opened = false;
-            }
-
-            _toggleNote() {
-                if (this.toast.note === "") return;
-                this.opened = !this.opened;
-            }
-
-            _showNote(note) {
-                return note === "";
-            }
-
-            _computeNoNotes(openState, note) {
-                return !openState && note === "";
-            }
-
-            _computeSeeNotes(openState, note) {
-                return !openState && note !== "";
+            _computeShowNote(note, toast) {
+                return toast && note.length > 0;
             }
         }
 

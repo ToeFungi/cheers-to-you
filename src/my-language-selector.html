@@ -3,7 +3,7 @@
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 
-<link rel="import" href="../src/my-language-card.html">
+<link rel="import" href="../src/my-collapsible-card.html">
 <link rel="import" href="../src/my-language-display.html">
 
 <link rel="import" href="shared-styles.html">
@@ -23,10 +23,10 @@
         </style>
 
         <div class="language-dropdown layout vertical">
-            <template is="dom-repeat" items="[[toasts]]">
-                <my-language-card card-title="[[item.language]]">
+            <template is="dom-repeat" items="[[sortedToasts]]">
+                <my-collapsible-card card-title="[[item.language]]">
                     <my-language-display toast="[[item]]"></my-language-display>
-                </my-language-card>
+                </my-collapsible-card>
             </template>
         </div>
     </template>
@@ -37,23 +37,37 @@
 
             static get properties() {
                 return {
-                    toasts: Array
+                    toasts: {
+                        type: Array,
+                        value: [],
+                        observer: '_sortToasts'
+                    },
+                    sortedToasts: {
+                        type: Array,
+                        value: []
+                    }
                 }
             }
 
             constructor() {
                 super();
 
-                this.addEventListener('card-close', this._closeCard);
-                this.addEventListener('card-open', this._openCard);
+                this.addEventListener('card-toggle', this._toggleCard);
             }
 
-            _closeCard({detail: {step}}) {
+            _sortToasts(toasts) {
+                this.sortedToasts = toasts.sort((a, b) => {
+                    let langA = a.language.toUpperCase();
+                    let langB = b.language.toUpperCase();
+
+                    if (langA < langB) return -1;
+                    if (langA > langB) return 1;
+                    return 0;
+                });
+            }
+
+            _toggleCard({detail: {step}}) {
                 if (step.open) return step.open = false;
-            }
-
-            _openCard({detail: {step}}) {
-                if (step.open) return;
 
                 Array.from(step.parentNode.children).forEach(function (siblingStep) {
                     siblingStep.open = false
