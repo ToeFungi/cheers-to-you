@@ -5,6 +5,8 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
@@ -83,6 +85,22 @@
         font-size: 200%;
         font-weight: 900;
       }
+
+      .instructions {
+        text-align: center;
+      }
+
+      .instructions > img {
+        width: 100px;
+      }
+
+      strong {
+        font-weight: 900;
+      }
+
+      paper-dialog {
+        font-size: 135%;
+      }
     </style>
 
     <app-location
@@ -96,6 +114,24 @@
             data="{{routeData}}"
             tail="{{subroute}}">
     </app-route>
+
+    <paper-dialog id="instructionModal" modal>
+      <p>
+        Welcome to <strong>Let's Toast!</strong>
+      </p>
+      <p>
+        Here is one basic thing you should probably know...
+      </p>
+      <p class="instructions">
+        <img src="images/instruction.svg">
+      </p>
+      <p>
+        To scroll between random languages, simply use your finger to swipe!
+      </p>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Awsum, thanks!</paper-button>
+      </div>
+    </paper-dialog>
 
     <paper-toast id="toastMsg" text="[[toastMsg.message]]" duration="[[toastMsg.duration]]" always-on-top>
       <paper-icon-button class="close-toast" icon="close" on-click="_closeToast"></paper-icon-button>
@@ -183,6 +219,21 @@
 
               this._getToasts();
               this.addEventListener('toast', evt => this._makeToast(evt));
+          }
+
+          ready() {
+              super.ready();
+
+              this._displayInstructions();
+          }
+
+          _displayInstructions() {
+              let hasOpened = window.localStorage.getItem(`hasOpened-${this.version}`);
+
+              if (hasOpened) return;
+
+              window.localStorage.setItem(`hasOpened-${this.version}`, true);
+              this.$.instructionModal.open();
           }
 
           _getToasts() {
