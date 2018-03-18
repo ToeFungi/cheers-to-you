@@ -63,7 +63,7 @@
             }
 
             _toggle() {
-                this.dispatchEvent(new CustomEvent(`card-toggle`, {
+                this.dispatchEvent(new CustomEvent('card-toggle', {
                     bubbles: true, composed: true, detail: {
                         step: this
                     }
