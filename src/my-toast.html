@@ -43,8 +43,7 @@
                     },
                     counter: {
                         type: Number,
-                        value: 0,
-                        observer: '_showAd'
+                        value: 0
                     },
                     selectedIndex: {
                         type: Number,
@@ -76,9 +75,7 @@
                 step.open = true;
             }
 
-            _showAd(counter) {
-                if (counter < 16) return;
-
+            _showAd() {
                 this.counter = 1;
                 if (window.AdMob) {
                     window.AdMob.prepareInterstitial({
@@ -90,6 +87,7 @@
 
             _indexChanged() {
                 this.counter++;
+                if (this.counter > 16) this._showAd();
                 window.navigator.vibrate(50);
             }
 
