@@ -22,8 +22,9 @@
             <p class="beverage-description">[[toast.nationalBeverage.description]]</p>
         </div>
 
-        <div hidden$="[[_computeShowNote(toast.nationalBeverage, toast)]]">
-            <p class="error-message">No beverages listed &#9785;</p>
+        <div class="error-message" hidden$="[[_computeShowNote(toast.nationalBeverage, toast)]]">
+            <p>No beverages listed yet &#9785;</p>
+            <p>Please wait for the next update!</p>
         </div>
     </template>
 

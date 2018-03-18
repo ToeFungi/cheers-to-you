@@ -21,8 +21,9 @@
             <p class="notes">[[toast.note]]</p>
         </div>
 
-        <div hidden$="[[_computeShowNote(toast.note, toast)]]">
-            <p class="error-message">No notes listed &#9785;</p>
+        <div class="error-message" hidden$="[[_computeShowNote(toast.note, toast)]]">
+            <p>No notes listed &#9785;</p>
+            <p>Please wait for the next update!</p>
         </div>
     </template>
 
