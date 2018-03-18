@@ -130,7 +130,7 @@
         To scroll between random languages, simply use your finger to swipe!
       </p>
       <div class="buttons">
-        <paper-button dialog-confirm autofocus>Awsum, thanks!</paper-button>
+        <paper-button dialog-confirm autofocus on-tap="_initAdMob">Awsum, thanks!</paper-button>
       </div>
     </paper-dialog>
 
@@ -196,7 +196,7 @@
                   rootPath: String,
                   version: {
                       type: String,
-                      value: '0.3.0'
+                      value: '0.3.1'
                   },
                   toasts: Array,
                   toastMsg: Object
@@ -212,14 +212,6 @@
           constructor() {
               super();
 
-              if (window.AdMob && window.admob.banner !== 'ADMOB_BANNER_ID') {
-                  window.AdMob.createBanner({
-                      adId: window.admob.banner,
-                      position: AdMob.AD_POSITION.BOTTOM_CENTER,
-                      autoShow: true
-                  });
-              }
-
               this._getToasts();
               this.addEventListener('toast', evt => this._makeToast(evt));
           }
@@ -227,16 +219,28 @@
           ready() {
               super.ready();
 
-              this._displayInstructions();
+              this._checkInstructionDisplay();
           }
 
-          _displayInstructions() {
+          _initAdMob() {
+              if (window.AdMob && window.admob.banner !== 'ADMOB_BANNER_ID') {
+                  window.AdMob.createBanner({
+                      adId: window.admob.banner,
+                      position: AdMob.AD_POSITION.BOTTOM_CENTER,
+                      autoShow: true
+                  });
+              }
+          }
+
+          _checkInstructionDisplay() {
               let hasOpened = window.localStorage.getItem(`hasOpened-${this.version}`);
 
-              if (hasOpened) return;
-
-              window.localStorage.setItem(`hasOpened-${this.version}`, true);
-              this.$.instructionModal.open();
+              if (hasOpened) {
+                  this._initAdMob();
+              } else {
+                  window.localStorage.setItem(`hasOpened-${this.version}`, true);
+                  this.$.instructionModal.open();
+              }
           }
 
           _getToasts() {
