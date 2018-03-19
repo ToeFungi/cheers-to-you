@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/maps-icons.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
@@ -106,6 +107,10 @@
       paper-dialog {
         font-size: 135%;
       }
+
+      iron-selector > a > iron-icon {
+        margin-right: 1em;
+      }
     </style>
 
     <app-location
@@ -149,9 +154,9 @@
         </app-toolbar>
 
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="toast" href="[[rootPath]]toast">Random Toasts</a>
-          <a name="language-selector" href="[[rootPath]]language-selector">Languages</a>
-          <a name="about" href="[[rootPath]]about">About</a>
+          <a name="toast" href="[[rootPath]]toast"><iron-icon icon="maps:local-bar"></iron-icon>Random Toasts</a>
+          <a name="language-selector" href="[[rootPath]]language-selector"><iron-icon icon="g-translate"></iron-icon>Languages</a>
+          <a name="about" href="[[rootPath]]about"><iron-icon icon="info"></iron-icon>About</a>
         </iron-selector>
 
         <div class="version">
